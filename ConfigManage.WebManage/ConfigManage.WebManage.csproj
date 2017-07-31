@@ -114,6 +114,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="404.html" />
     <Content Include="Content\DD_belatedPNG_0.0.8a-min.js" />
     <Content Include="Content\expressInstall.swf" />
     <Content Include="Content\html5shiv.js" />
@@ -136,6 +137,7 @@
     <Content Include="Content\lib\layer\3.0.3\skin\default\loading-1.gif" />
     <Content Include="Content\lib\layer\3.0.3\skin\default\loading-2.gif" />
     <Content Include="Content\respond.min.js" />
+    <Content Include="Content\Site.css" />
     <Content Include="Content\squid.js" />
     <Content Include="Content\static\h-ui.admin\css\H-ui.admin.css" />
     <Content Include="Content\static\h-ui.admin\css\H-ui.login.css" />
@@ -352,17 +354,23 @@
     <Content Include="Content\static\h-ui\js\H-ui.js" />
     <Content Include="Content\static\h-ui\js\H-ui.min.js" />
     <Content Include="Content\swfobject.js" />
+    <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BootStrapper.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\EnviromentController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\Filters\LoginAttribute.cs" />
+    <Compile Include="Infrastructure\PublicUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -383,6 +391,10 @@
     <Content Include="Content\static\h-ui\images\ucnter\Thumbs.db" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="App_Data\ipdata.config" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Enviroment\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

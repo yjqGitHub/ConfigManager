@@ -108,12 +108,12 @@ namespace ConfigManager.DomainService.Implement
             await _adminDetailRepository.UpdateAsync(new
             {
                 FLastModifyTime = DateTime.Now,
-                FLoginIP = ip,
-                FLoginPort = sitePort,
-                FLoginTime = DateTime.Now,
-                FUserAgent = WebUtil.GetUserAgent(),
-                FLoginAddress = IpDataHelper.SearchLocation(ip)?.ToString()
-            }, new { FUserID = adminInfo.FID, FIsDeleted = 0 });
+                FLastLoginIP = ip,
+                FLastLoginPort = sitePort,
+                FLastLoginTime = DateTime.Now,
+                FLastLoginUserAgent = WebUtil.GetUserAgent(),
+                FLastLoginAddress = IpDataHelper.SearchLocation(ip)?.ToString()
+            }, new { FAdminID = adminInfo.FID, FIsDeleted = 0 });
         }
 
         #endregion 登录校验

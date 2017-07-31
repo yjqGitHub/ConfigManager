@@ -1,4 +1,6 @@
-﻿using ConfigManager.Application;
+﻿using ConfigManage.WebManage.Infrastructure;
+using ConfigManage.WebManage.Infrastructure.Filters;
+using ConfigManager.Application;
 using ConfigManager.TransDto.TransModel;
 using JQ.Utils;
 using JQ.Web;
@@ -8,6 +10,7 @@ using System.Web.Mvc;
 
 namespace ConfigManage.WebManage.Controllers
 {
+    [NoNeedLogin]
     public class AccountController : Controller
     {
         private readonly IAdminApplication _adminApplication;
@@ -50,6 +53,10 @@ namespace ConfigManage.WebManage.Controllers
                 return ResultUtil.Failed("请输入正确的验证码");
             }
             var operateResult = await _adminApplication.LoginAsync(model);
+            if (operateResult.SuccessAndValueNotNull)
+            {
+                PublicUtil.SetCurrentAdmin(operateResult.Value.FID);
+            }
             return operateResult.ToJsonResult();
         }
 

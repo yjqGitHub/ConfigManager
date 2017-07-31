@@ -18,7 +18,7 @@ function tabNavallwidth(){
 		$tabNavmore =hide_nav.find(".Hui-tabNav-more");
 	if (!$tabNav[0]){return}
 	$tabNavitem.each(function(index, element) {
-        taballwidth += Number(parseFloat($(this).width()+60))
+	    taballwidth += Number(parseFloat($(this).width()+60))
     });
 	$tabNav.width(taballwidth+25);
 	var w = $tabNavWp.width();
@@ -35,18 +35,6 @@ function Huiasidedisplay(){
 	if($(window).width()>=768){
 		$(".Hui-aside").show();
 	} 
-}
-/*获取皮肤cookie*/
-function getskincookie(){
-	var v = $.cookie("Huiskin");
-	var hrefStr=$("#skin").attr("href");
-	if(v==null||v==""){
-		v="default";
-	}
-	if(hrefStr!=undefined){
-		var hrefRes=hrefStr.substring(0,hrefStr.lastIndexOf('skin/'))+'skin/'+v+'/skin.css';
-		$("#skin").attr("href",hrefRes);
-	}
 }
 /*菜单导航*/
 function Hui_admin_tab(obj){
@@ -137,7 +125,7 @@ function creatIframe(href,titleName){
 		$tabNav.css({left:0})
 	}	
 	iframeBox.hide();
-	iframe_box.append('<div class="show_iframe"><div class="loading"></div><iframe frameborder="0" src='+href+'></iframe></div>');
+	iframe_box.append('<div class="show_iframe" style="height:100%;"><div class="loading"></div><iframe frameborder="0" src=' + href + ' width="100%" height="100%"></iframe></div>');
 	var showBox=iframe_box.find('.show_iframe:visible');
 	showBox.find('iframe').load(function(){
 		showBox.find('.loading').hide();
@@ -173,44 +161,6 @@ function removeIframeAll(){
 	}
 }
 
-/*弹出层*/
-/*
-	参数解释：
-	title	标题
-	url		请求的url
-	id		需要操作的数据id
-	w		弹出层宽度（缺省调默认值）
-	h		弹出层高度（缺省调默认值）
-*/
-function layer_show(title,url,w,h){
-	if (title == null || title == '') {
-		title=false;
-	};
-	if (url == null || url == '') {
-		url="404.html";
-	};
-	if (w == null || w == '') {
-		w=800;
-	};
-	if (h == null || h == '') {
-		h=($(window).height() - 50);
-	};
-	layer.open({
-		type: 2,
-		area: [w+'px', h +'px'],
-		fix: false, //不固定
-		maxmin: true,
-		shade:0.4,
-		title: title,
-		content: url
-	});
-}
-/*关闭弹出框口*/
-function layer_close(){
-	var index = parent.layer.getFrameIndex(window.name);
-	parent.layer.close(index);
-}
-
 /*时间*/
 function getHTMLDate(obj) {
     var d = new Date();
@@ -234,7 +184,6 @@ function getHTMLDate(obj) {
 
 $(function(){
 	getHTMLDate($("#top_time"));
-	getskincookie();
 	//layer.config({extend: 'extend/layer.ext.js'});
 	Huiasidedisplay();
 	var resizeID;
@@ -280,17 +229,9 @@ $(function(){
 	});
 	$(document).on("dblclick","#min_title_list li",function(){
 		var aCloseIndex=$(this).index();
-		var iframe_box=$("#iframe_box");
-		if(aCloseIndex>0){
-			$(this).remove();
-			$('#iframe_box').find('.show_iframe').eq(aCloseIndex).remove();	
-			num==0?num=0:num--;
-			$("#min_title_list li").removeClass("active").eq(aCloseIndex-1).addClass("active");
-			iframe_box.find(".show_iframe").hide().eq(aCloseIndex-1).show();
-			tabNavallwidth();
-		}else{
-			return false;
-		}
+		var iframe_box = $("#iframe_box");
+		var currentFrame = $('#iframe_box').find('.show_iframe').eq(aCloseIndex).find("iframe");
+		$(currentFrame).attr("src", $(currentFrame).attr("src"));
 	});
 	tabNavallwidth();
 	
@@ -306,13 +247,4 @@ $(function(){
 	function toNavPos(){
 		oUl.stop().animate({'left':-num*100},100);
 	}
-	
-	/*换肤*/
-	$("#Hui-skin .dropDown-menu a").click(function(){
-		var v = $(this).attr("data-val");
-		$.cookie("Huiskin", v);
-		var hrefStr=$("#skin").attr("href");
-		var hrefRes=hrefStr.substring(0,hrefStr.lastIndexOf('skin/'))+'skin/'+v+'/skin.css';
-		$(window.frames.document).contents().find("#skin").attr("href",hrefRes);
-	});
 }); 

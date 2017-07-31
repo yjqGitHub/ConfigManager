@@ -12,7 +12,7 @@ $("form").submit(function () {
             type: "POST",
             data: $(this).serialize()
         }, function (data) {
-            ShowSuccessMsg(data.Message);
+            ShowSuccessMsg(data.Message || "登录成功");
             location.href = "/Home/Index";
         }, function (error) {
             $("#Code").focus();

@@ -8,7 +8,9 @@ function Ajax(config, successCallBack, failedCallBack) {
             ShowWarningMsg("请先登录");
             top.location.href = result.RedirectUrl;
         } else {
-            ShowWarningMsg(result.Message);
+            if (result.Message && result.Message.trim() != "") {
+                ShowWarningMsg(result.Message);
+            }
             failedCallBack && failedCallBack(result);
         }
         HideLoading();
@@ -17,4 +19,3 @@ function Ajax(config, successCallBack, failedCallBack) {
         ShowWarningMsg("请求服务失败");
     });
 }
-
