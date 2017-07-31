@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C2313620-D439-4E40-AD66-7797CFBA172E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ConfigManager.Repository</RootNamespace>
+    <AssemblyName>ConfigManager.Repository</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Implement\ReleaseRecordRepository.cs" />
+    <Compile Include="Implement\ReleaseRepository.cs" />
+    <Compile Include="Implement\PubConfigGroupRepository.cs" />
+    <Compile Include="Implement\EnvironmentRepository.cs" />
+    <Compile Include="Implement\ConfigOperateLogRepository.cs" />
+    <Compile Include="Implement\ConfigMapRepository.cs" />
+    <Compile Include="Implement\ConfigLoadBalanceRepository.cs" />
+    <Compile Include="Implement\ConfigHistoryRecordRepository.cs" />
+    <Compile Include="Implement\ConfigFailOverRepository.cs" />
+    <Compile Include="Implement\ConfigRepository.cs" />
+    <Compile Include="Implement\ApplicationPubConfigGroupMapRepository.cs" />
+    <Compile Include="Implement\ApplicationConfigModifyRecoredRepository.cs" />
+    <Compile Include="Implement\ApplicationConfigInstanceRepository.cs" />
+    <Compile Include="Implement\ApplicationRepository.cs" />
+    <Compile Include="Implement\AdminOperateLogRepository.cs" />
+    <Compile Include="IAdminOperateLogRepository.cs" />
+    <Compile Include="Implement\AdminEnviromentRoleRepository.cs" />
+    <Compile Include="Implement\AdminDetailRepository.cs" />
+    <Compile Include="IAdminDetailRepository.cs" />
+    <Compile Include="Implement\AdminRepository.cs" />
+    <Compile Include="IReleaseRecordRepository.cs" />
+    <Compile Include="IReleaseRepository.cs" />
+    <Compile Include="IPubConfigGroupRepository.cs" />
+    <Compile Include="IEnvironmentRepository.cs" />
+    <Compile Include="IConfigOperateLogRepository.cs" />
+    <Compile Include="IConfigMapRepository.cs" />
+    <Compile Include="IConfigLoadBalanceRepository.cs" />
+    <Compile Include="IConfigHistoryRecordRepository.cs" />
+    <Compile Include="IConfigFailOverRepository.cs" />
+    <Compile Include="IConfigRepository.cs" />
+    <Compile Include="IApplicationPubConfigGroupMapRepository.cs" />
+    <Compile Include="IApplicationConfigModifyRecoredRepository.cs" />
+    <Compile Include="IApplicationConfigInstanceRepository.cs" />
+    <Compile Include="IApplicationRepository.cs" />
+    <Compile Include="IAdminEnviromentRoleRepository.cs" />
+    <Compile Include="IAdminRepository.cs" />
+    <Compile Include="Constants\TableNameConstant.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ConfigManager.Constant\ConfigManager.Constant.csproj">
+      <Project>{c888458b-b4e8-4f19-80ea-57f6832fff57}</Project>
+      <Name>ConfigManager.Constant</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ConfigManager.Domain\ConfigManager.Domain.csproj">
+      <Project>{70018ccb-213b-4dd5-814a-037f08e82f0c}</Project>
+      <Name>ConfigManager.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ConfigManager.Infrastructure\ConfigManager.Infrastructure.csproj">
+      <Project>{bc37b036-991f-4412-b095-d03f10059d32}</Project>
+      <Name>ConfigManager.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ConfigManager.TransDto\ConfigManager.TransDto.csproj">
+      <Project>{fb0c6ca8-89cc-4074-8538-3b715f2a7978}</Project>
+      <Name>ConfigManager.TransDto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ConfigManager.UnitOfWork\ConfigManager.UnitOfWork.csproj">
+      <Project>{1330b559-1227-4338-a38f-8d0d38339fc9}</Project>
+      <Name>ConfigManager.UnitOfWork</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JQ.DataAccess\JQ.DataAccess.csproj">
+      <Project>{17e8348f-25b5-40f5-aef5-87aa99da40de}</Project>
+      <Name>JQ.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JQ.Dependency\JQ.Dependency.csproj">
+      <Project>{65D99DC6-90FD-4C9B-974F-9A48FDEADE41}</Project>
+      <Name>JQ.Dependency</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JQ\JQ.csproj">
+      <Project>{b56acfca-295e-4902-a653-777dcf0c4af9}</Project>
+      <Name>JQ</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

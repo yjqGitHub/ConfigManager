@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EF437FEE-C6E8-4EC6-9E7D-F8A25701656F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ConfigManager.DomainService</RootNamespace>
+    <AssemblyName>ConfigManager.DomainService</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Implement\ReleaseRecordDomainService.cs" />
+    <Compile Include="Implement\ReleaseDomainService.cs" />
+    <Compile Include="Implement\PubConfigGroupDomainService.cs" />
+    <Compile Include="Implement\EnvironmentDomainService.cs" />
+    <Compile Include="Implement\ConfigOperateLogDomainService.cs" />
+    <Compile Include="Implement\ConfigMapDomainService.cs" />
+    <Compile Include="Implement\ConfigLoadBalanceDomainService.cs" />
+    <Compile Include="Implement\ConfigHistoryRecordDomainService.cs" />
+    <Compile Include="Implement\ConfigFailOverDomainService.cs" />
+    <Compile Include="Implement\ConfigDomainService.cs" />
+    <Compile Include="Implement\ApplicationPubConfigGroupMapDomainService.cs" />
+    <Compile Include="Implement\ApplicationConfigModifyRecoredDomainService.cs" />
+    <Compile Include="Implement\ApplicationConfigInstanceDomainService.cs" />
+    <Compile Include="Implement\ApplicationDomainService.cs" />
+    <Compile Include="Implement\AdminOperateLogDomainService.cs" />
+    <Compile Include="IAdminOperateLogDomainService.cs" />
+    <Compile Include="Implement\AdminEnviromentRoleDomainService.cs" />
+    <Compile Include="Implement\AdminDetailDomainService.cs" />
+    <Compile Include="IAdminDetailDomainService.cs" />
+    <Compile Include="Implement\AdminDomainService.cs" />
+    <Compile Include="IReleaseRecordDomainService.cs" />
+    <Compile Include="IReleaseDomainService.cs" />
+    <Compile Include="IPubConfigGroupDomainService.cs" />
+    <Compile Include="IEnvironmentDomainService.cs" />
+    <Compile Include="IConfigOperateLogDomainService.cs" />
+    <Compile Include="IConfigMapDomainService.cs" />
+    <Compile Include="IConfigLoadBalanceDomainService.cs" />
+    <Compile Include="IConfigHistoryRecordDomainService.cs" />
+    <Compile Include="IConfigFailOverDomainService.cs" />
+    <Compile Include="IConfigDomainService.cs" />
+    <Compile Include="IApplicationPubConfigGroupMapDomainService.cs" />
+    <Compile Include="IApplicationConfigModifyRecoredDomainService.cs" />
+    <Compile Include="IApplicationConfigInstanceDomainService.cs" />
+    <Compile Include="IApplicationDomainService.cs" />
+    <Compile Include="IAdminEnviromentRoleDomainService.cs" />
+    <Compile Include="IAdminDomainService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ConfigManager.Cache\ConfigManager.Cache.csproj">
+      <Project>{21E9664E-9956-4D1F-91A9-410CB6803B77}</Project>
+      <Name>ConfigManager.Cache</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ConfigManager.Constant\ConfigManager.Constant.csproj">
+      <Project>{c888458b-b4e8-4f19-80ea-57f6832fff57}</Project>
+      <Name>ConfigManager.Constant</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ConfigManager.Domain\ConfigManager.Domain.csproj">
+      <Project>{70018ccb-213b-4dd5-814a-037f08e82f0c}</Project>
+      <Name>ConfigManager.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ConfigManager.Infrastructure\ConfigManager.Infrastructure.csproj">
+      <Project>{bc37b036-991f-4412-b095-d03f10059d32}</Project>
+      <Name>ConfigManager.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ConfigManager.Repository\ConfigManager.Repository.csproj">
+      <Project>{c2313620-d439-4e40-ad66-7797cfba172e}</Project>
+      <Name>ConfigManager.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ConfigManager.TransDto\ConfigManager.TransDto.csproj">
+      <Project>{fb0c6ca8-89cc-4074-8538-3b715f2a7978}</Project>
+      <Name>ConfigManager.TransDto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JQ.DataAccess\JQ.DataAccess.csproj">
+      <Project>{17e8348f-25b5-40f5-aef5-87aa99da40de}</Project>
+      <Name>JQ.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JQ.Dependency\JQ.Dependency.csproj">
+      <Project>{65D99DC6-90FD-4C9B-974F-9A48FDEADE41}</Project>
+      <Name>JQ.Dependency</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JQ\JQ.csproj">
+      <Project>{b56acfca-295e-4902-a653-777dcf0c4af9}</Project>
+      <Name>JQ</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

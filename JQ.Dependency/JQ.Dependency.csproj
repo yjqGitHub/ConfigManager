@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{65D99DC6-90FD-4C9B-974F-9A48FDEADE41}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>JQ.Dependency</RootNamespace>
+    <AssemblyName>JQ.Dependency</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac, Version=4.6.1.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.6.1\lib\net45\Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Autofac.Extras.DynamicProxy, Version=4.2.1.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.Extras.DynamicProxy.4.2.1\lib\net45\Autofac.Extras.DynamicProxy.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Core.4.0.0\lib\net45\Castle.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AutofacContainer\AutofacExtension.cs" />
+    <Compile Include="AutofacContainer\AutofacLeftScope.cs" />
+    <Compile Include="AutofacContainer\AutofacObjectContainer.cs" />
+    <Compile Include="ContainerManager.cs" />
+    <Compile Include="IIocRegister.cs" />
+    <Compile Include="IIocResolve.cs" />
+    <Compile Include="IIocScopeResolve.cs" />
+    <Compile Include="Intercept\BaseIntercept.cs" />
+    <Compile Include="Intercept\BaseMonitorIntercept.cs" />
+    <Compile Include="Intercept\BizIntercept.cs" />
+    <Compile Include="Intercept\TimeElapsedIntercept\CacheStatisticIntercept.cs" />
+    <Compile Include="Intercept\TimeElapsedIntercept\HttpStatisticIntercept.cs" />
+    <Compile Include="Intercept\TimeElapsedIntercept\MQStatisticIntercept.cs" />
+    <Compile Include="Intercept\TimeElapsedIntercept\NoSqlStatisticIntercept.cs" />
+    <Compile Include="Intercept\TimeElapsedIntercept\OtherStatisticIntercept.cs" />
+    <Compile Include="Intercept\TimeElapsedIntercept\RpcStatisticIntercept.cs" />
+    <Compile Include="Intercept\TimeElapsedIntercept\SqlStatisticIntercept.cs" />
+    <Compile Include="Intercept\TimeElapsedIntercept\TimeElapsedInfo.cs" />
+    <Compile Include="Intercept\TimeElapsedIntercept\TimeElapsedStatistic.cs" />
+    <Compile Include="Intercept\TimeElapsedIntercept\TimeElapsedType.cs" />
+    <Compile Include="Intercept\UseInterceptConfigManageExtension.cs" />
+    <Compile Include="IObjectContainer.cs" />
+    <Compile Include="LifeStyle.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JQ\JQ.csproj">
+      <Project>{b56acfca-295e-4902-a653-777dcf0c4af9}</Project>
+      <Name>JQ</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
