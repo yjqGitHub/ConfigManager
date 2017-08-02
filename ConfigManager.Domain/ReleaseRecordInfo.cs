@@ -19,7 +19,7 @@ namespace ConfigManager.Domain
 		/// <summary>
 		/// 环境ID
 		/// </summary>
-		public int FEnviromentID { get; set; }
+		public int FEnvironmentID { get; set; }
 
 		/// <summary>
 		/// 是否废弃（回滚则视为废弃）

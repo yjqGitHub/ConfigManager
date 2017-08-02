@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2008                    */
-/* Created on:     2017/7/31 14:50:45                           */
+/* Created on:     2017/8/2 22:19:15                            */
 /*==============================================================*/
 
 
@@ -20,9 +20,9 @@ go
 
 if exists (select 1
             from  sysobjects
-           where  id = object_id('T_Admin_Enviroment_Role')
+           where  id = object_id('T_Admin_Environment_Role')
             and   type = 'U')
-   drop table T_Admin_Enviroment_Role
+   drop table T_Admin_Environment_Role
 go
 
 if exists (select 1
@@ -134,7 +134,7 @@ go
 /* Table: T_Admin                                               */
 /*==============================================================*/
 create table T_Admin (
-   FAdminID             int                  identity(1,1),
+   FID                  int                  identity(1,1),
    FName                nvarchar(50)         null,
    FUserName            varchar(50)          null,
    FEmail               varchar(50)          null,
@@ -148,7 +148,7 @@ create table T_Admin (
    FLastModifyTime      datetime             null,
    FLaseModifyUserID    INT                  null,
    FIsDeleted           bit                  not null,
-   constraint PK_T_ADMIN primary key (FAdminID)
+   constraint PK_T_ADMIN primary key (FID)
 )
 go
 
@@ -171,13 +171,13 @@ go
 
 if exists(select 1 from sys.extended_properties p where
       p.major_id = object_id('T_Admin')
-  and p.minor_id = (select c.column_id from sys.columns c where c.object_id = p.major_id and c.name = 'FAdminID')
+  and p.minor_id = (select c.column_id from sys.columns c where c.object_id = p.major_id and c.name = 'FID')
 )
 begin
    declare @CurrentUser sysname
 select @CurrentUser = user_name()
 execute sp_dropextendedproperty 'MS_Description', 
-   'user', @CurrentUser, 'table', 'T_Admin', 'column', 'FAdminID'
+   'user', @CurrentUser, 'table', 'T_Admin', 'column', 'FID'
 
 end
 
@@ -185,7 +185,7 @@ end
 select @CurrentUser = user_name()
 execute sp_addextendedproperty 'MS_Description', 
    '管理员ID(主键、自增)',
-   'user', @CurrentUser, 'table', 'T_Admin', 'column', 'FAdminID'
+   'user', @CurrentUser, 'table', 'T_Admin', 'column', 'FID'
 go
 
 if exists(select 1 from sys.extended_properties p where
@@ -680,27 +680,27 @@ execute sp_addextendedproperty 'MS_Description',
 go
 
 /*==============================================================*/
-/* Table: T_Admin_Enviroment_Role                               */
+/* Table: T_Admin_Environment_Role                              */
 /*==============================================================*/
-create table T_Admin_Enviroment_Role (
+create table T_Admin_Environment_Role (
    FID                  int                  identity(1,1),
    FAdminID             int                  not null,
-   FEnviromentID        int                  not null,
+   FEnvironmentID       int                  not null,
    FCreateUserID        INT                  not null,
    FCreateTime          datetime             not null,
    FLastModifyUserID    int                  null,
    FLastModifyTime      datetime             null,
-   constraint PK_T_ADMIN_ENVIROMENT_ROLE primary key (FID)
+   constraint PK_T_ADMIN_ENVIRONMENT_ROLE primary key (FID)
 )
 go
 
 if exists (select 1 from  sys.extended_properties
-           where major_id = object_id('T_Admin_Enviroment_Role') and minor_id = 0)
+           where major_id = object_id('T_Admin_Environment_Role') and minor_id = 0)
 begin 
    declare @CurrentUser sysname 
 select @CurrentUser = user_name() 
 execute sp_dropextendedproperty 'MS_Description',  
-   'user', @CurrentUser, 'table', 'T_Admin_Enviroment_Role' 
+   'user', @CurrentUser, 'table', 'T_Admin_Environment_Role' 
  
 end 
 
@@ -708,18 +708,18 @@ end
 select @CurrentUser = user_name() 
 execute sp_addextendedproperty 'MS_Description',  
    '管理员对应环境权限信息', 
-   'user', @CurrentUser, 'table', 'T_Admin_Enviroment_Role'
+   'user', @CurrentUser, 'table', 'T_Admin_Environment_Role'
 go
 
 if exists(select 1 from sys.extended_properties p where
-      p.major_id = object_id('T_Admin_Enviroment_Role')
+      p.major_id = object_id('T_Admin_Environment_Role')
   and p.minor_id = (select c.column_id from sys.columns c where c.object_id = p.major_id and c.name = 'FID')
 )
 begin
    declare @CurrentUser sysname
 select @CurrentUser = user_name()
 execute sp_dropextendedproperty 'MS_Description', 
-   'user', @CurrentUser, 'table', 'T_Admin_Enviroment_Role', 'column', 'FID'
+   'user', @CurrentUser, 'table', 'T_Admin_Environment_Role', 'column', 'FID'
 
 end
 
@@ -727,18 +727,18 @@ end
 select @CurrentUser = user_name()
 execute sp_addextendedproperty 'MS_Description', 
    '记录ID',
-   'user', @CurrentUser, 'table', 'T_Admin_Enviroment_Role', 'column', 'FID'
+   'user', @CurrentUser, 'table', 'T_Admin_Environment_Role', 'column', 'FID'
 go
 
 if exists(select 1 from sys.extended_properties p where
-      p.major_id = object_id('T_Admin_Enviroment_Role')
+      p.major_id = object_id('T_Admin_Environment_Role')
   and p.minor_id = (select c.column_id from sys.columns c where c.object_id = p.major_id and c.name = 'FAdminID')
 )
 begin
    declare @CurrentUser sysname
 select @CurrentUser = user_name()
 execute sp_dropextendedproperty 'MS_Description', 
-   'user', @CurrentUser, 'table', 'T_Admin_Enviroment_Role', 'column', 'FAdminID'
+   'user', @CurrentUser, 'table', 'T_Admin_Environment_Role', 'column', 'FAdminID'
 
 end
 
@@ -746,18 +746,18 @@ end
 select @CurrentUser = user_name()
 execute sp_addextendedproperty 'MS_Description', 
    '管理员ID',
-   'user', @CurrentUser, 'table', 'T_Admin_Enviroment_Role', 'column', 'FAdminID'
+   'user', @CurrentUser, 'table', 'T_Admin_Environment_Role', 'column', 'FAdminID'
 go
 
 if exists(select 1 from sys.extended_properties p where
-      p.major_id = object_id('T_Admin_Enviroment_Role')
-  and p.minor_id = (select c.column_id from sys.columns c where c.object_id = p.major_id and c.name = 'FEnviromentID')
+      p.major_id = object_id('T_Admin_Environment_Role')
+  and p.minor_id = (select c.column_id from sys.columns c where c.object_id = p.major_id and c.name = 'FEnvironmentID')
 )
 begin
    declare @CurrentUser sysname
 select @CurrentUser = user_name()
 execute sp_dropextendedproperty 'MS_Description', 
-   'user', @CurrentUser, 'table', 'T_Admin_Enviroment_Role', 'column', 'FEnviromentID'
+   'user', @CurrentUser, 'table', 'T_Admin_Environment_Role', 'column', 'FEnvironmentID'
 
 end
 
@@ -765,18 +765,18 @@ end
 select @CurrentUser = user_name()
 execute sp_addextendedproperty 'MS_Description', 
    '环境ID',
-   'user', @CurrentUser, 'table', 'T_Admin_Enviroment_Role', 'column', 'FEnviromentID'
+   'user', @CurrentUser, 'table', 'T_Admin_Environment_Role', 'column', 'FEnvironmentID'
 go
 
 if exists(select 1 from sys.extended_properties p where
-      p.major_id = object_id('T_Admin_Enviroment_Role')
+      p.major_id = object_id('T_Admin_Environment_Role')
   and p.minor_id = (select c.column_id from sys.columns c where c.object_id = p.major_id and c.name = 'FCreateUserID')
 )
 begin
    declare @CurrentUser sysname
 select @CurrentUser = user_name()
 execute sp_dropextendedproperty 'MS_Description', 
-   'user', @CurrentUser, 'table', 'T_Admin_Enviroment_Role', 'column', 'FCreateUserID'
+   'user', @CurrentUser, 'table', 'T_Admin_Environment_Role', 'column', 'FCreateUserID'
 
 end
 
@@ -784,18 +784,18 @@ end
 select @CurrentUser = user_name()
 execute sp_addextendedproperty 'MS_Description', 
    '创建人ID',
-   'user', @CurrentUser, 'table', 'T_Admin_Enviroment_Role', 'column', 'FCreateUserID'
+   'user', @CurrentUser, 'table', 'T_Admin_Environment_Role', 'column', 'FCreateUserID'
 go
 
 if exists(select 1 from sys.extended_properties p where
-      p.major_id = object_id('T_Admin_Enviroment_Role')
+      p.major_id = object_id('T_Admin_Environment_Role')
   and p.minor_id = (select c.column_id from sys.columns c where c.object_id = p.major_id and c.name = 'FCreateTime')
 )
 begin
    declare @CurrentUser sysname
 select @CurrentUser = user_name()
 execute sp_dropextendedproperty 'MS_Description', 
-   'user', @CurrentUser, 'table', 'T_Admin_Enviroment_Role', 'column', 'FCreateTime'
+   'user', @CurrentUser, 'table', 'T_Admin_Environment_Role', 'column', 'FCreateTime'
 
 end
 
@@ -803,18 +803,18 @@ end
 select @CurrentUser = user_name()
 execute sp_addextendedproperty 'MS_Description', 
    '创建时间',
-   'user', @CurrentUser, 'table', 'T_Admin_Enviroment_Role', 'column', 'FCreateTime'
+   'user', @CurrentUser, 'table', 'T_Admin_Environment_Role', 'column', 'FCreateTime'
 go
 
 if exists(select 1 from sys.extended_properties p where
-      p.major_id = object_id('T_Admin_Enviroment_Role')
+      p.major_id = object_id('T_Admin_Environment_Role')
   and p.minor_id = (select c.column_id from sys.columns c where c.object_id = p.major_id and c.name = 'FLastModifyUserID')
 )
 begin
    declare @CurrentUser sysname
 select @CurrentUser = user_name()
 execute sp_dropextendedproperty 'MS_Description', 
-   'user', @CurrentUser, 'table', 'T_Admin_Enviroment_Role', 'column', 'FLastModifyUserID'
+   'user', @CurrentUser, 'table', 'T_Admin_Environment_Role', 'column', 'FLastModifyUserID'
 
 end
 
@@ -822,18 +822,18 @@ end
 select @CurrentUser = user_name()
 execute sp_addextendedproperty 'MS_Description', 
    '最后修改人',
-   'user', @CurrentUser, 'table', 'T_Admin_Enviroment_Role', 'column', 'FLastModifyUserID'
+   'user', @CurrentUser, 'table', 'T_Admin_Environment_Role', 'column', 'FLastModifyUserID'
 go
 
 if exists(select 1 from sys.extended_properties p where
-      p.major_id = object_id('T_Admin_Enviroment_Role')
+      p.major_id = object_id('T_Admin_Environment_Role')
   and p.minor_id = (select c.column_id from sys.columns c where c.object_id = p.major_id and c.name = 'FLastModifyTime')
 )
 begin
    declare @CurrentUser sysname
 select @CurrentUser = user_name()
 execute sp_dropextendedproperty 'MS_Description', 
-   'user', @CurrentUser, 'table', 'T_Admin_Enviroment_Role', 'column', 'FLastModifyTime'
+   'user', @CurrentUser, 'table', 'T_Admin_Environment_Role', 'column', 'FLastModifyTime'
 
 end
 
@@ -841,7 +841,7 @@ end
 select @CurrentUser = user_name()
 execute sp_addextendedproperty 'MS_Description', 
    '最后修改时间',
-   'user', @CurrentUser, 'table', 'T_Admin_Enviroment_Role', 'column', 'FLastModifyTime'
+   'user', @CurrentUser, 'table', 'T_Admin_Environment_Role', 'column', 'FLastModifyTime'
 go
 
 /*==============================================================*/
@@ -851,6 +851,7 @@ create table T_Admin_OperateLog (
    FID                  int                  identity(1,1),
    FBizType             int                  not null,
    FOperateContent      varchar(max)         null,
+   FOperaterIP          varchar(15)          null,
    FCreateTime          datetime             not null,
    FCreateUserID        int                  not null,
    FLastModifyTime      datetime             null,
@@ -932,6 +933,25 @@ select @CurrentUser = user_name()
 execute sp_addextendedproperty 'MS_Description', 
    '操作内容',
    'user', @CurrentUser, 'table', 'T_Admin_OperateLog', 'column', 'FOperateContent'
+go
+
+if exists(select 1 from sys.extended_properties p where
+      p.major_id = object_id('T_Admin_OperateLog')
+  and p.minor_id = (select c.column_id from sys.columns c where c.object_id = p.major_id and c.name = 'FOperaterIP')
+)
+begin
+   declare @CurrentUser sysname
+select @CurrentUser = user_name()
+execute sp_dropextendedproperty 'MS_Description', 
+   'user', @CurrentUser, 'table', 'T_Admin_OperateLog', 'column', 'FOperaterIP'
+
+end
+
+
+select @CurrentUser = user_name()
+execute sp_addextendedproperty 'MS_Description', 
+   '操作人IP',
+   'user', @CurrentUser, 'table', 'T_Admin_OperateLog', 'column', 'FOperaterIP'
 go
 
 if exists(select 1 from sys.extended_properties p where
@@ -1034,7 +1054,7 @@ go
 /*==============================================================*/
 create table T_Application (
    FID                  int                  identity(1,1),
-   FEnviromentID        int                  not null,
+   FEnvironmentID       int                  not null,
    FName                varchar(100)         null,
    FCode                varchar(50)          null,
    FVersion             varchar(15)          null,
@@ -1086,13 +1106,13 @@ go
 
 if exists(select 1 from sys.extended_properties p where
       p.major_id = object_id('T_Application')
-  and p.minor_id = (select c.column_id from sys.columns c where c.object_id = p.major_id and c.name = 'FEnviromentID')
+  and p.minor_id = (select c.column_id from sys.columns c where c.object_id = p.major_id and c.name = 'FEnvironmentID')
 )
 begin
    declare @CurrentUser sysname
 select @CurrentUser = user_name()
 execute sp_dropextendedproperty 'MS_Description', 
-   'user', @CurrentUser, 'table', 'T_Application', 'column', 'FEnviromentID'
+   'user', @CurrentUser, 'table', 'T_Application', 'column', 'FEnvironmentID'
 
 end
 
@@ -1100,7 +1120,7 @@ end
 select @CurrentUser = user_name()
 execute sp_addextendedproperty 'MS_Description', 
    '所属环境',
-   'user', @CurrentUser, 'table', 'T_Application', 'column', 'FEnviromentID'
+   'user', @CurrentUser, 'table', 'T_Application', 'column', 'FEnvironmentID'
 go
 
 if exists(select 1 from sys.extended_properties p where
@@ -1279,7 +1299,7 @@ go
 /*==============================================================*/
 create table T_Application_Config_Instance (
    FID                  int                  identity,
-   FEnviromentID        int                  not null,
+   FEnvironmentID       int                  not null,
    FApplicationID       int                  not null,
    FConfigContent       varchar(max)         null,
    FReleaseRecordID     int                  not null,
@@ -1330,13 +1350,13 @@ go
 
 if exists(select 1 from sys.extended_properties p where
       p.major_id = object_id('T_Application_Config_Instance')
-  and p.minor_id = (select c.column_id from sys.columns c where c.object_id = p.major_id and c.name = 'FEnviromentID')
+  and p.minor_id = (select c.column_id from sys.columns c where c.object_id = p.major_id and c.name = 'FEnvironmentID')
 )
 begin
    declare @CurrentUser sysname
 select @CurrentUser = user_name()
 execute sp_dropextendedproperty 'MS_Description', 
-   'user', @CurrentUser, 'table', 'T_Application_Config_Instance', 'column', 'FEnviromentID'
+   'user', @CurrentUser, 'table', 'T_Application_Config_Instance', 'column', 'FEnvironmentID'
 
 end
 
@@ -1344,7 +1364,7 @@ end
 select @CurrentUser = user_name()
 execute sp_addextendedproperty 'MS_Description', 
    '环境ID',
-   'user', @CurrentUser, 'table', 'T_Application_Config_Instance', 'column', 'FEnviromentID'
+   'user', @CurrentUser, 'table', 'T_Application_Config_Instance', 'column', 'FEnvironmentID'
 go
 
 if exists(select 1 from sys.extended_properties p where
@@ -1504,7 +1524,7 @@ go
 /*==============================================================*/
 create table T_Application_Config_Modify_Recored (
    FID                  int                  identity(1,1),
-   FEnviromentID        int                  not null,
+   FEnvironmentID       int                  not null,
    FApplicationID       int                  not null,
    FVersion             varchar(15)          null,
    FGetType             int                  not null,
@@ -1553,13 +1573,13 @@ go
 
 if exists(select 1 from sys.extended_properties p where
       p.major_id = object_id('T_Application_Config_Modify_Recored')
-  and p.minor_id = (select c.column_id from sys.columns c where c.object_id = p.major_id and c.name = 'FEnviromentID')
+  and p.minor_id = (select c.column_id from sys.columns c where c.object_id = p.major_id and c.name = 'FEnvironmentID')
 )
 begin
    declare @CurrentUser sysname
 select @CurrentUser = user_name()
 execute sp_dropextendedproperty 'MS_Description', 
-   'user', @CurrentUser, 'table', 'T_Application_Config_Modify_Recored', 'column', 'FEnviromentID'
+   'user', @CurrentUser, 'table', 'T_Application_Config_Modify_Recored', 'column', 'FEnvironmentID'
 
 end
 
@@ -1567,7 +1587,7 @@ end
 select @CurrentUser = user_name()
 execute sp_addextendedproperty 'MS_Description', 
    '环境ID',
-   'user', @CurrentUser, 'table', 'T_Application_Config_Modify_Recored', 'column', 'FEnviromentID'
+   'user', @CurrentUser, 'table', 'T_Application_Config_Modify_Recored', 'column', 'FEnvironmentID'
 go
 
 if exists(select 1 from sys.extended_properties p where
@@ -2874,7 +2894,7 @@ go
 /*==============================================================*/
 create table T_Config_Map (
    FID                  int                  identity(1,1),
-   FEnviromentID        int                  not null,
+   FEnvironmentID       int                  not null,
    FApplicationID       INT                  not null,
    FPubConfigGroupID    int                  not null,
    FKey                 varchar(50)          null,
@@ -2927,13 +2947,13 @@ go
 
 if exists(select 1 from sys.extended_properties p where
       p.major_id = object_id('T_Config_Map')
-  and p.minor_id = (select c.column_id from sys.columns c where c.object_id = p.major_id and c.name = 'FEnviromentID')
+  and p.minor_id = (select c.column_id from sys.columns c where c.object_id = p.major_id and c.name = 'FEnvironmentID')
 )
 begin
    declare @CurrentUser sysname
 select @CurrentUser = user_name()
 execute sp_dropextendedproperty 'MS_Description', 
-   'user', @CurrentUser, 'table', 'T_Config_Map', 'column', 'FEnviromentID'
+   'user', @CurrentUser, 'table', 'T_Config_Map', 'column', 'FEnvironmentID'
 
 end
 
@@ -2941,7 +2961,7 @@ end
 select @CurrentUser = user_name()
 execute sp_addextendedproperty 'MS_Description', 
    '所属环境',
-   'user', @CurrentUser, 'table', 'T_Config_Map', 'column', 'FEnviromentID'
+   'user', @CurrentUser, 'table', 'T_Config_Map', 'column', 'FEnvironmentID'
 go
 
 if exists(select 1 from sys.extended_properties p where
@@ -3571,7 +3591,7 @@ create table T_PubConfigGroup (
    FID                  int                  identity(1,1),
    FName                varchar(50)          null,
    FCode                varchar(50)          null,
-   FEnviromentID        int                  not null,
+   FEnvironmentID       int                  not null,
    FComment             varchar(100)         null,
    FIsEnabled           bit                  not null,
    FCreateTime          datetime             not null,
@@ -3659,13 +3679,13 @@ go
 
 if exists(select 1 from sys.extended_properties p where
       p.major_id = object_id('T_PubConfigGroup')
-  and p.minor_id = (select c.column_id from sys.columns c where c.object_id = p.major_id and c.name = 'FEnviromentID')
+  and p.minor_id = (select c.column_id from sys.columns c where c.object_id = p.major_id and c.name = 'FEnvironmentID')
 )
 begin
    declare @CurrentUser sysname
 select @CurrentUser = user_name()
 execute sp_dropextendedproperty 'MS_Description', 
-   'user', @CurrentUser, 'table', 'T_PubConfigGroup', 'column', 'FEnviromentID'
+   'user', @CurrentUser, 'table', 'T_PubConfigGroup', 'column', 'FEnvironmentID'
 
 end
 
@@ -3673,7 +3693,7 @@ end
 select @CurrentUser = user_name()
 execute sp_addextendedproperty 'MS_Description', 
    '所属环境',
-   'user', @CurrentUser, 'table', 'T_PubConfigGroup', 'column', 'FEnviromentID'
+   'user', @CurrentUser, 'table', 'T_PubConfigGroup', 'column', 'FEnvironmentID'
 go
 
 if exists(select 1 from sys.extended_properties p where
@@ -3815,7 +3835,7 @@ go
 create table T_Release (
    FID                  int                  identity(1,1),
    FReleaseRecordID     int                  not null,
-   FEnviromentID        int                  not null,
+   FEnvironmentID       int                  not null,
    FApplicationID       int                  not null,
    FConfigGroupID       int                  not null,
    FReleaseContent      varchar(max)         null,
@@ -3886,13 +3906,13 @@ go
 
 if exists(select 1 from sys.extended_properties p where
       p.major_id = object_id('T_Release')
-  and p.minor_id = (select c.column_id from sys.columns c where c.object_id = p.major_id and c.name = 'FEnviromentID')
+  and p.minor_id = (select c.column_id from sys.columns c where c.object_id = p.major_id and c.name = 'FEnvironmentID')
 )
 begin
    declare @CurrentUser sysname
 select @CurrentUser = user_name()
 execute sp_dropextendedproperty 'MS_Description', 
-   'user', @CurrentUser, 'table', 'T_Release', 'column', 'FEnviromentID'
+   'user', @CurrentUser, 'table', 'T_Release', 'column', 'FEnvironmentID'
 
 end
 
@@ -3900,7 +3920,7 @@ end
 select @CurrentUser = user_name()
 execute sp_addextendedproperty 'MS_Description', 
    '环境ID',
-   'user', @CurrentUser, 'table', 'T_Release', 'column', 'FEnviromentID'
+   'user', @CurrentUser, 'table', 'T_Release', 'column', 'FEnvironmentID'
 go
 
 if exists(select 1 from sys.extended_properties p where

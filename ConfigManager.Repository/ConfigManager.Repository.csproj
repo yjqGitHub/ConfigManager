@@ -56,7 +56,7 @@
     <Compile Include="Implement\ApplicationRepository.cs" />
     <Compile Include="Implement\AdminOperateLogRepository.cs" />
     <Compile Include="IAdminOperateLogRepository.cs" />
-    <Compile Include="Implement\AdminEnviromentRoleRepository.cs" />
+    <Compile Include="Implement\AdminEnvironmentRoleRepository.cs" />
     <Compile Include="Implement\AdminDetailRepository.cs" />
     <Compile Include="IAdminDetailRepository.cs" />
     <Compile Include="Implement\AdminRepository.cs" />
@@ -74,7 +74,7 @@
     <Compile Include="IApplicationConfigModifyRecoredRepository.cs" />
     <Compile Include="IApplicationConfigInstanceRepository.cs" />
     <Compile Include="IApplicationRepository.cs" />
-    <Compile Include="IAdminEnviromentRoleRepository.cs" />
+    <Compile Include="IAdminEnvironmentRoleRepository.cs" />
     <Compile Include="IAdminRepository.cs" />
     <Compile Include="Constants\TableNameConstant.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -115,6 +115,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="404.html" />
+    <Content Include="Content\CSS\PageList.css" />
     <Content Include="Content\DD_belatedPNG_0.0.8a-min.js" />
     <Content Include="Content\expressInstall.swf" />
     <Content Include="Content\html5shiv.js" />
@@ -363,7 +364,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\EnviromentController.cs" />
+    <Compile Include="Controllers\EnvironmentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -393,7 +394,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Enviroment\Index.cshtml" />
+    <Content Include="Views\Environment\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -402,7 +403,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Content\CSS\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,10 @@
+﻿.page-header {
+    border-bottom: 1px solid #e5e5e5;
+    line-height: 39px;
+    height: 39px;
+    overflow: hidden;
+}
+
+.page-container-search {
+    margin: 15px 0 10px 0;
+}

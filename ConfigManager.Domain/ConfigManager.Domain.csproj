@@ -56,7 +56,7 @@
     <Compile Include="ApplicationConfigModifyRecoredInfo.cs" />
     <Compile Include="ApplicationConfigInstanceInfo.cs" />
     <Compile Include="ApplicationInfo.cs" />
-    <Compile Include="AdminEnviromentRoleInfo.cs" />
+    <Compile Include="AdminEnvironmentRoleInfo.cs" />
     <Compile Include="AdminInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

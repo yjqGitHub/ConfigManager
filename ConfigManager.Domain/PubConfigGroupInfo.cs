@@ -29,7 +29,7 @@ namespace ConfigManager.Domain
 		/// <summary>
 		/// 所属环境
 		/// </summary>
-		public int FEnviromentID { get; set; }
+		public int FEnvironmentID { get; set; }
 
 		/// <summary>
 		/// 备注

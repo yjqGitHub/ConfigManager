@@ -24,7 +24,7 @@ namespace ConfigManager.Domain
 		/// <summary>
 		/// 环境ID
 		/// </summary>
-		public int FEnviromentID { get; set; }
+		public int FEnvironmentID { get; set; }
 
 		/// <summary>
 		/// 项目ID

@@ -1,0 +1,105 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<div class="page-header">
+    <nav>
+        <span class="r">
+            <a href="/WebSite/Add?w=800&h=600" title="添加环境" class="Dialog btn btn-primary radius">
+                <i class="Hui-iconfont">&#xe600;</i> 添加环境
+            </a>
+        </span>
+    </nav>
+</div>
+<div class="page-container">
+    <div class="page-container-search">
+        <span class="mr-10">AppId:@Html.TextBox("AppId", "", new { @class = "input-text", @style = "width:150px", @placeholder = "输入AppId" })</span>
+        <span class="r mr-10"><button type="submit" class="btn btn-success radius"><i class="Hui-iconfont"></i> 搜索</button></span>
+    </div>
+    <div class="page-container-list">
+        <table class="table table-border table-bordered table-bg" id="table-head-fixer" style="overflow-x:auto;">
+            <thead>
+                <tr class="text-c">
+                    <th width="25">
+                        <input type="checkbox" name="" value="">
+                    </th>
+                    <th width="300">AppId</th>
+                    <th width="300">密钥</th>
+                    <th width="300">名字</th>
+                    <th width="300">标题</th>
+                    <th width="300">基础地址</th>
+                    <th width="300">状态</th>
+                    <th width="300">添加时间</th>
+                    <th width="300">修改时间</th>
+                    <th width="300">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="text-c">
+                    <td><input type="checkbox" value="1" name=""></td>
+                    <td>item.AppId</td>
+                    <td>item.AppSecret</td>
+                    <td>item.SiteName</td>
+                    <td>item.SiteTitle</td>
+                    <td>item.SiteHost</td>
+                    <td>item.State</td>
+                    <td>item.CreateTime</td>
+                    <td class="td-status">item.LastModifyTime</td>
+                    <td class="td-manage">操做</td>
+                </tr>
+                <tr class="text-c">
+                    <td><input type="checkbox" value="1" name=""></td>
+                    <td>item.AppId</td>
+                    <td>item.AppSecret</td>
+                    <td>item.SiteName</td>
+                    <td>item.SiteTitle</td>
+                    <td>item.SiteHost</td>
+                    <td>item.State</td>
+                    <td>item.CreateTime</td>
+                    <td class="td-status">item.LastModifyTime</td>
+                    <td class="td-manage">操做</td>
+                </tr>
+                <tr class="text-c">
+                    <td><input type="checkbox" value="1" name=""></td>
+                    <td>item.AppId</td>
+                    <td>item.AppSecret</td>
+                    <td>item.SiteName</td>
+                    <td>item.SiteTitle</td>
+                    <td>item.SiteHost</td>
+                    <td>item.State</td>
+                    <td>item.CreateTime</td>
+                    <td class="td-status">item.LastModifyTime</td>
+                    <td class="td-manage">操做</td>
+                </tr>
+                <tr class="text-c">
+                    <td><input type="checkbox" value="1" name=""></td>
+                    <td>item.AppId</td>
+                    <td>item.AppSecret</td>
+                    <td>item.SiteName</td>
+                    <td>item.SiteTitle</td>
+                    <td>item.SiteHost</td>
+                    <td>item.State</td>
+                    <td>item.CreateTime</td>
+                    <td class="td-status">item.LastModifyTime</td>
+                    <td class="td-manage">操做</td>
+                </tr>
+                <tr class="text-c">
+                    <td><input type="checkbox" value="1" name=""></td>
+                    <td>item.AppId</td>
+                    <td>item.AppSecret</td>
+                    <td>item.SiteName</td>
+                    <td>item.SiteTitle</td>
+                    <td>item.SiteHost</td>
+                    <td>item.State</td>
+                    <td>item.CreateTime</td>
+                    <td class="td-status">item.LastModifyTime</td>
+                    <td class="td-manage">操做</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="page-container-pager">
+        <div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">显示 1 到 1 ，共 1 条</div>
+        <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate"><a class="paginate_button previous disabled" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0" id="DataTables_Table_0_previous">上一页</a><span><a class="paginate_button current" aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0">1</a></span><a class="paginate_button next disabled" aria-controls="DataTables_Table_0" data-dt-idx="2" tabindex="0" id="DataTables_Table_0_next">下一页</a></div>
+    </div>
+</div>
+

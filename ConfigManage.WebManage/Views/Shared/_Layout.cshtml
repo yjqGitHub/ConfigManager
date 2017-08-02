@@ -13,6 +13,7 @@
     <script type="text/javascript" src="/Content/lib/respond.min.js"></script>
     <![endif]-->
     @Styles.Render("~/ListLayout/css")
+    <link href="~/Content/CSS/PageList.css" rel="stylesheet" />
     <style type="text/css">
         html, body {
             height: 100%;
@@ -31,12 +32,12 @@
     <!--请在下方写此页面业务相关的脚本-->
     <script type="text/javascript">
         $(document).ready(function () {
-            ResetPageList();
+            //ResetPageList();
             InitDailog(".openDialog");
         })
 
         $(window).resize(function () {
-            ResetPageList();
+            //ResetPageList();
         });
         function ResetPageList() {
             $('.page-container-list').height($('body').height() - $('.breadcrumb').outerHeight(true) - $('.page-container-footer').outerHeight(true));

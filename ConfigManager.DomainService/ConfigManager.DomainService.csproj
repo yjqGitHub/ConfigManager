@@ -56,7 +56,7 @@
     <Compile Include="Implement\ApplicationDomainService.cs" />
     <Compile Include="Implement\AdminOperateLogDomainService.cs" />
     <Compile Include="IAdminOperateLogDomainService.cs" />
-    <Compile Include="Implement\AdminEnviromentRoleDomainService.cs" />
+    <Compile Include="Implement\AdminEnvironmentRoleDomainService.cs" />
     <Compile Include="Implement\AdminDetailDomainService.cs" />
     <Compile Include="IAdminDetailDomainService.cs" />
     <Compile Include="Implement\AdminDomainService.cs" />
@@ -74,7 +74,7 @@
     <Compile Include="IApplicationConfigModifyRecoredDomainService.cs" />
     <Compile Include="IApplicationConfigInstanceDomainService.cs" />
     <Compile Include="IApplicationDomainService.cs" />
-    <Compile Include="IAdminEnviromentRoleDomainService.cs" />
+    <Compile Include="IAdminEnvironmentRoleDomainService.cs" />
     <Compile Include="IAdminDomainService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

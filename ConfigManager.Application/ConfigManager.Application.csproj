@@ -56,7 +56,7 @@
     <Compile Include="Implement\ApplicationApplication.cs" />
     <Compile Include="Implement\AdminOperateLogApplication.cs" />
     <Compile Include="IAdminOperateLogApplication.cs" />
-    <Compile Include="Implement\AdminEnviromentRoleApplication.cs" />
+    <Compile Include="Implement\AdminEnvironmentRoleApplication.cs" />
     <Compile Include="Implement\AdminDetailApplication.cs" />
     <Compile Include="IAdminDetailApplication.cs" />
     <Compile Include="Implement\AdminApplication.cs" />
@@ -74,7 +74,7 @@
     <Compile Include="IApplicationConfigModifyRecoredApplication.cs" />
     <Compile Include="IApplicationConfigInstanceApplication.cs" />
     <Compile Include="IApplicationApplication.cs" />
-    <Compile Include="IAdminEnviromentRoleApplication.cs" />
+    <Compile Include="IAdminEnvironmentRoleApplication.cs" />
     <Compile Include="IAdminApplication.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
