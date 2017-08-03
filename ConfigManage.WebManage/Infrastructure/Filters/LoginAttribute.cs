@@ -1,11 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.Mvc;
 using JQ.Web.Extensions;
 using JQ.Web.Result;
+using System;
+using System.Web.Mvc;
 
 namespace ConfigManage.WebManage.Infrastructure.Filters
 {
@@ -38,6 +34,7 @@ namespace ConfigManage.WebManage.Infrastructure.Filters
                 {
                     filterContext.Result = new RedirectResult("/Account/Login", true);
                 }
+                return;
             }
 
             base.OnActionExecuting(filterContext);

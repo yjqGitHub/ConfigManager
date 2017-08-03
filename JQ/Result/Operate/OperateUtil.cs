@@ -149,6 +149,32 @@ namespace JQ.Result.Operate
         }
 
         /// <summary>
+        /// 执行方法
+        /// </summary>
+        /// <param name="executeAction">方法</param>
+        /// <param name="successMessage">成功提示信息</param>
+        /// <param name="callMemberName">调用方法名字</param>
+        /// <returns>操作结果</returns>
+        public static OperateResult Execute(Action executeAction, string successMessage = null, string callMemberName = null)
+        {
+            try
+            {
+                executeAction();
+                return Success(successMessage);
+            }
+            catch (BizException ex)
+            {
+                LogUtil.Info($"{callMemberName}:{ex.Message}");
+                return ParamError(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                LogUtil.Error(ex, memberName: callMemberName);
+                return Failed("操作失败");
+            }
+        }
+
+        /// <summary>
         /// 执行异步方法
         /// </summary>
         /// <param name="executeActionAsync">异步方法</param>
@@ -159,6 +185,32 @@ namespace JQ.Result.Operate
             try
             {
                 return await executeActionAsync();
+            }
+            catch (BizException ex)
+            {
+                LogUtil.Info($"{callMemberName}:{ex.Message}");
+                return ParamError(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                LogUtil.Error(ex, memberName: callMemberName);
+                return Failed("操作失败");
+            }
+        }
+
+        /// <summary>
+        /// 执行异步方法
+        /// </summary>
+        /// <param name="executeActionAsync">异步方法</param>
+        /// <param name="successMessage">成功提示信息</param>
+        /// <param name="callMemberName">调用方法名字</param>
+        /// <returns>操作结果</returns>
+        public static async Task<OperateResult> Execute(Func<Task> executeActionAsync, string successMessage = null, string callMemberName = null)
+        {
+            try
+            {
+                await executeActionAsync();
+                return Success(successMessage);
             }
             catch (BizException ex)
             {
@@ -198,6 +250,32 @@ namespace JQ.Result.Operate
         }
 
         /// <summary>
+        /// 执行方法
+        /// </summary>
+        /// <typeparam name="T">返回结果类型</typeparam>
+        /// <param name="executeAction">执行方法</param>
+        /// <param name="callMemberName">调用方法名字</param>
+        /// <returns>操作结果</returns>
+        public static OperateResult<T> Execute<T>(Func<T> executeAction, string callMemberName = null)
+        {
+            try
+            {
+                var value = executeAction();
+                return Success(value);
+            }
+            catch (BizException ex)
+            {
+                LogUtil.Info($"{callMemberName}:{ex.Message}");
+                return ParamError<T>(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                LogUtil.Error(ex, memberName: callMemberName);
+                return Failed<T>("操作失败");
+            }
+        }
+
+        /// <summary>
         /// 执行异步方法
         /// </summary>
         /// <typeparam name="T">返回结果类型</typeparam>
@@ -209,6 +287,32 @@ namespace JQ.Result.Operate
             try
             {
                 return await executeActionAsync();
+            }
+            catch (BizException ex)
+            {
+                LogUtil.Info($"{callMemberName}:{ex.Message}");
+                return ParamError<T>(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                LogUtil.Error(ex, memberName: callMemberName);
+                return Failed<T>("操作失败");
+            }
+        }
+
+        /// <summary>
+        /// 执行异步方法
+        /// </summary>
+        /// <typeparam name="T">返回结果类型</typeparam>
+        /// <param name="executeAction">异步方法</param>
+        /// <param name="callMemberName">调用方法名字</param>
+        /// <returns>操作结果</returns>
+        public static async Task<OperateResult<T>> ExecuteAsync<T>(Func<Task<T>> executeActionAsync, string callMemberName = null)
+        {
+            try
+            {
+                var value = await executeActionAsync();
+                return Success(value);
             }
             catch (BizException ex)
             {

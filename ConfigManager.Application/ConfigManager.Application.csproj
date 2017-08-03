@@ -107,6 +107,10 @@
       <Project>{1330b559-1227-4338-a38f-8d0d38339fc9}</Project>
       <Name>ConfigManager.UnitOfWork</Name>
     </ProjectReference>
+    <ProjectReference Include="..\JQ.DataAccess\JQ.DataAccess.csproj">
+      <Project>{17E8348F-25B5-40F5-AEF5-87AA99DA40DE}</Project>
+      <Name>JQ.DataAccess</Name>
+    </ProjectReference>
     <ProjectReference Include="..\JQ\JQ.csproj">
       <Project>{b56acfca-295e-4902-a653-777dcf0c4af9}</Project>
       <Name>JQ</Name>

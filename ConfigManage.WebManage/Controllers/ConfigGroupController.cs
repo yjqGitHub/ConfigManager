@@ -8,7 +8,6 @@ using System.Web.Mvc;
 
 namespace ConfigManage.WebManage.Controllers
 {
-    [Login]
     public class ConfigGroupController : Controller
     {
         // GET: ConfigGroup

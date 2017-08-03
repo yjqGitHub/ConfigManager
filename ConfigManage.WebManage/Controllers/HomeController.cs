@@ -8,7 +8,6 @@ using System.Web.Mvc;
 
 namespace ConfigManage.WebManage.Controllers
 {
-    [Login]
     public class HomeController : Controller
     {
         public ActionResult Index()
