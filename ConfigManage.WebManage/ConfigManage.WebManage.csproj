@@ -121,6 +121,7 @@
     <Content Include="Content\html5shiv.js" />
     <Content Include="Content\jselect-1.0.js" />
     <Content Include="Content\JS\CommonJs\DialogJs.js" />
+    <Content Include="Content\JS\CommonJs\tableHeadFixer.js" />
     <Content Include="Content\JS\CommonJs\ToolJs.js" />
     <Content Include="Content\JS\CommonJs\Validator.js" />
     <Content Include="Content\JS\DomainJs\Account.js" />
@@ -364,11 +365,13 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\EnvironmentController.cs" />
+    <Compile Include="Controllers\ConfigGroupController.cs" />
+    <Compile Include="Controllers\DeployEnvironmentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\BaseController.cs" />
     <Compile Include="Infrastructure\Filters\LoginAttribute.cs" />
     <Compile Include="Infrastructure\PublicUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -393,8 +396,9 @@
     <Content Include="App_Data\ipdata.config" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Environment\Index.cshtml" />
+    <Content Include="Views\Shared\_Layout_List.cshtml" />
+    <Content Include="Views\ConfigGroup\Index.cshtml" />
+    <Content Include="Views\DeployEnvironment\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

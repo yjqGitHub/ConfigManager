@@ -6,5 +6,121 @@
 }
 
 .page-container-search {
-    margin: 15px 0 10px 0;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #f0f8ff;
 }
+
+    .page-container-search .form-group {
+        display: inline-block;
+        margin-bottom: 0;
+        vertical-align: middle;
+        margin-right: 10px;
+    }
+
+        .page-container-search .form-group lable {
+            display: inline-block;
+            max-width: 100%;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        .page-container-search .form-group input[type=text] {
+            border: 1px solid #e2e2e2;
+            background: #fff;
+            color: #333;
+            padding: 5px;
+            width: 100px;
+            margin: 5px 0 6px 0;
+            border-radius: 5px 5px 5px 5px;
+        }
+
+            .page-container-search .form-group input[type=text]:hover {
+                border: solid 1px #3bb4f2;
+            }
+
+        .page-container-search .form-group select {
+            font-size: 12px;
+            padding: 5px 10px !important;
+            line-height: 1.5;
+            margin: 0;
+            padding: 0;
+            border-radius: 3px;
+            display: inline-block;
+            vertical-align: middle;
+            border: 1px solid #ddd;
+            margin: 5px 0 6px 0;
+            border-radius: 5px 5px 5px 5px;
+        }
+
+            .page-container-search .form-group select:hover {
+                border: solid 1px #3bb4f2;
+            }
+
+.page-container-list {
+    overflow: auto;
+}
+
+.page-container-pager {
+    background-color: #F3F3F3;
+    border-top: 1px solid #DADADA;
+    border-bottom: 1px solid #DADADA;
+    height: 50px;
+    line-height: 35px;
+    padding: 0 5px;
+}
+
+    .page-container-pager .pager-info {
+        clear: both;
+        float: left;
+        padding-top: 10px;
+        font-size: 14px;
+        color: #666;
+        /*line-height: 35px;*/
+    }
+
+    .page-container-pager .pager {
+        float: right;
+        padding-top: 10px;
+        text-align: right;
+    }
+
+    .page-container-pager .pager-button {
+        border: 1px solid #ccc;
+        cursor: pointer;
+        display: inline-block;
+        margin-left: 2px;
+        text-align: center;
+        text-decoration: none;
+        color: #666;
+        height: 26px;
+        line-height: 26px;
+        text-decoration: none;
+        margin: 0 0 6px 6px;
+        padding: 0 10px;
+        font-size: 14px;
+        vertical-align: middle;
+        /*line-height: 35px;*/
+    }
+
+        .page-container-pager .pager-button.current {
+            cursor: default;
+        }
+
+            .page-container-pager .pager-button.current:hover, .pager-button.current, .pager-button:hover {
+                background: #5a98de;
+                color: #fff;
+                text-decoration: none;
+            }
+
+        .page-container-pager .pager-button.disabled {
+            cursor: default;
+        }
+
+            .page-container-pager .pager-button.disabled:hover, .pager-button.disabled {
+                text-decoration: none;
+                cursor: default;
+                color: #666;
+                background: none;
+            }

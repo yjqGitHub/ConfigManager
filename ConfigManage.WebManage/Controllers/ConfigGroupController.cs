@@ -9,8 +9,9 @@ using System.Web.Mvc;
 namespace ConfigManage.WebManage.Controllers
 {
     [Login]
-    public class HomeController : Controller
+    public class ConfigGroupController : Controller
     {
+        // GET: ConfigGroup
         public ActionResult Index()
         {
             return View();

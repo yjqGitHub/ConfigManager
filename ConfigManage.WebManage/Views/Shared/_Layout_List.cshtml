@@ -28,24 +28,22 @@
 </head>
 <body>
     @RenderBody()
-    @Scripts.Render("~/ListLayout/js")
+        @Scripts.Render("~/ListLayout/js")
     <!--请在下方写此页面业务相关的脚本-->
     <script type="text/javascript">
         $(document).ready(function () {
-            //ResetPageList();
+            ResetPageList();
             InitDailog(".openDialog");
         })
-
         $(window).resize(function () {
-            //ResetPageList();
+            ResetPageList();
         });
         function ResetPageList() {
-            $('.page-container-list').height($('body').height() - $('.breadcrumb').outerHeight(true) - $('.page-container-footer').outerHeight(true));
+            $('.page-container-list').height($('body').height() - $('.page-header').outerHeight(true) - $('.page-container-search').outerHeight(true) - $('.page-container-pager').outerHeight(true));
             if ($("#table-head-fixer")) {
                 $("#table-head-fixer").tableHeadFixer();
             }
         }
-
     </script>
     @RenderSection("Script", false)
 </body>

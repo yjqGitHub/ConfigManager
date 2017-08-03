@@ -1,5 +1,6 @@
-﻿@{
-    ViewBag.Title = "Index";
+﻿
+@{
+    ViewBag.Title = "部署环境列表";
 }
 <div class="page-header">
     <nav>
@@ -12,11 +13,31 @@
 </div>
 <div class="page-container">
     <div class="page-container-search">
-        <span class="mr-10">AppId:@Html.TextBox("AppId", "", new { @class = "input-text", @style = "width:150px", @placeholder = "输入AppId" })</span>
-        <span class="r mr-10"><button type="submit" class="btn btn-success radius"><i class="Hui-iconfont"></i> 搜索</button></span>
+        <div class="form-group">
+            <label>AppId:</label>
+            @Html.TextBox("AppId", "", new { @style = "width:150px", @placeholder = "输入AppId" })
+        </div>
+        <div class="form-group"><label>AppId:</label>@Html.TextBox("AppId", "", new { @style = "width:150px", @placeholder = "输入AppId" })</div>
+        <div class="form-group"><label>AppId:</label>@Html.TextBox("AppId", "", new { @style = "width:150px", @placeholder = "输入AppId" })</div>
+        <div class="form-group"><label>AppId:</label>@Html.TextBox("AppId", "", new { @style = "width:150px", @placeholder = "输入AppId" })</div>
+        <div class="form-group"><label>AppId:</label>@Html.TextBox("AppId", "", new { @style = "width:150px", @placeholder = "输入AppId" })</div>
+        <div class="form-group"><label>AppId:</label>@Html.TextBox("AppId", "", new { @style = "width:150px", @placeholder = "输入AppId" })</div>
+        <div class="form-group"><label>AppId:</label>@Html.TextBox("AppId", "", new { @style = "width:150px", @placeholder = "输入AppId" })</div>
+        <div class="form-group"><label>AppId:</label>@Html.TextBox("AppId", "", new { @style = "width:150px", @placeholder = "输入AppId" })</div>
+        <div class="form-group"><label>AppId:</label>@Html.TextBox("AppId", "", new { @style = "width:150px", @placeholder = "输入AppId" })</div>
+        <div class="form-group"><label>AppId:</label>@Html.TextBox("AppId", "", new { @style = "width:150px", @placeholder = "输入AppId" })</div>
+        <div class="form-group"><label>AppId:</label>@Html.TextBox("AppId", "", new { @style = "width:150px", @placeholder = "输入AppId" })</div>
+        <div class="form-group"><label>AppId:</label>@Html.TextBox("AppId", "", new { @style = "width:150px", @placeholder = "输入AppId" })</div>
+        <div class="form-group"><label>AppId:</label>@Html.TextBox("AppId", "", new { @style = "width:150px", @placeholder = "输入AppId" })</div>
+        <div class="form-group"><label>AppId:</label>@Html.TextBox("AppId", "", new { @style = "width:150px", @placeholder = "输入AppId" })</div>
+        <div class="form-group"><label>AppId:</label>@Html.TextBox("AppId", "", new { @style = "width:150px", @placeholder = "输入AppId" })</div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-success radius"><i class="Hui-iconfont"></i> 搜索</button>
+        </div>
+        @*<span class="r mr-10"><button type="submit" class="btn btn-success radius"><i class="Hui-iconfont"></i> 搜索</button></span>*@
     </div>
     <div class="page-container-list">
-        <table class="table table-border table-bordered table-bg" id="table-head-fixer" style="overflow-x:auto;">
+        <table class="table table-border table-bordered table-bg table-hover" id="table-head-fixer">
             <thead>
                 <tr class="text-c">
                     <th width="25">
@@ -97,9 +118,14 @@
             </tbody>
         </table>
     </div>
-    <div class="page-container-pager">
-        <div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">显示 1 到 1 ，共 1 条</div>
-        <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate"><a class="paginate_button previous disabled" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0" id="DataTables_Table_0_previous">上一页</a><span><a class="paginate_button current" aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0">1</a></span><a class="paginate_button next disabled" aria-controls="DataTables_Table_0" data-dt-idx="2" tabindex="0" id="DataTables_Table_0_next">下一页</a></div>
+    <div class="page-container-pager noselect">
+        <div class="pager-info" id="DataTables_Table_0_info" role="status" aria-live="polite">显示 1 到 1 ，共 1 条</div>
+        <div class="pager">
+            <a class="pager-button disabled" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0" id="DataTables_Table_0_previous">上一页</a>
+            <span><a class="pager-button current" aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0">1</a></span>
+            <a class="pager-button" aria-controls="DataTables_Table_0" data-dt-idx="2" tabindex="0" id="DataTables_Table_0_next">下一页</a>
+        </div>
     </div>
 </div>
+
 

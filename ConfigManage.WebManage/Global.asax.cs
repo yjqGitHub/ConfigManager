@@ -14,6 +14,8 @@ namespace ConfigManage.WebManage
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             BootStrapper.Install();
+            ViewEngines.Engines.Clear();//清除原有引擎
+            ViewEngines.Engines.Add(new RazorViewEngine());//加入Razor引擎
         }
 
         protected void Application_End(object sender, EventArgs e)
