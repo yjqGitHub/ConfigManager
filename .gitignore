@@ -30,3 +30,5 @@
 /JQ.Web/bin
 /JQ.Web/obj
 /ConfigManage.WebManage/App_Data/NLogs
+/ConfigManager.WebManage/obj
+/ConfigManager.WebManage/bin

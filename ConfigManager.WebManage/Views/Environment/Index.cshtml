@@ -1,0 +1,57 @@
+﻿@model IEnumerable<EnvironmentDto>
+@{
+    ViewBag.Title = "部署环境列表";
+}
+<div class="page-header">
+    <nav>
+        <span class="r">
+            <a href="/WebSite/Add?w=800&h=600" title="添加环境" class="Dialog btn btn-primary radius">
+                <i class="Hui-iconfont">&#xe600;</i> 添加环境
+            </a>
+        </span>
+    </nav>
+</div>
+<div class="page-container">
+    <div class="page-container-list">
+        <table class="table table-border table-bordered table-bg table-hover" id="table-head-fixer">
+            <thead>
+                <tr class="text-c">
+                    <th width="25">
+                        编号
+                    </th>
+                    <th>名字</th>
+                    <th>编码</th>
+                    <th>密钥</th>
+                    <th>备注</th>
+                    <th>最后修改时间</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Count() > 0)
+                {
+                    int currentRow = 1;
+                    foreach (var item in Model)
+                    {
+                        <tr class="text-c">
+                            <td>@currentRow.ToString()</td>
+                            <td>@item.FName</td>
+                            <td>@item.FCode</td>
+                            <td>@item.FSecret</td>
+                            <td>@item.FComment</td>
+                            <td>@(item.FLastModifyTime?.ToString("yyyy-MM-dd HH:mm:sss"))</td>
+                            <td class="td-manage">操做</td>
+                        </tr>
+                    }
+                    currentRow++;
+                }
+                else
+                {
+                    @Html.Raw("<tr><td style='color:red;text-align:center;' colspan='7'>暂无记录</td></tr>")
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+

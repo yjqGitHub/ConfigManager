@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigManage.WebManage", "ConfigManage.WebManage\ConfigManage.WebManage.csproj", "{79C9FA51-CA78-4834-AF20-9E0B1BCC1CD1}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JQ", "JQ\JQ.csproj", "{B56ACFCA-295E-4902-A653-777DCF0C4AF9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JQ.Dependency", "JQ.Dependency\JQ.Dependency.csproj", "{65D99DC6-90FD-4C9B-974F-9A48FDEADE41}"
@@ -45,16 +43,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigManager.Cache", "Conf
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JQ.Redis", "JQ.Redis\JQ.Redis.csproj", "{2457F9AA-5CBA-4472-8170-9053D5491731}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigManager.WebManage", "ConfigManager.WebManage\ConfigManager.WebManage.csproj", "{EBEA679C-DD52-48C5-897F-4EAC499C8068}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{79C9FA51-CA78-4834-AF20-9E0B1BCC1CD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{79C9FA51-CA78-4834-AF20-9E0B1BCC1CD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{79C9FA51-CA78-4834-AF20-9E0B1BCC1CD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{79C9FA51-CA78-4834-AF20-9E0B1BCC1CD1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B56ACFCA-295E-4902-A653-777DCF0C4AF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B56ACFCA-295E-4902-A653-777DCF0C4AF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B56ACFCA-295E-4902-A653-777DCF0C4AF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -111,12 +107,15 @@ Global
 		{2457F9AA-5CBA-4472-8170-9053D5491731}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2457F9AA-5CBA-4472-8170-9053D5491731}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2457F9AA-5CBA-4472-8170-9053D5491731}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBEA679C-DD52-48C5-897F-4EAC499C8068}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBEA679C-DD52-48C5-897F-4EAC499C8068}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBEA679C-DD52-48C5-897F-4EAC499C8068}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBEA679C-DD52-48C5-897F-4EAC499C8068}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{79C9FA51-CA78-4834-AF20-9E0B1BCC1CD1} = {6EDE3E81-6D25-4BA5-83B3-0D2783D1775C}
 		{B56ACFCA-295E-4902-A653-777DCF0C4AF9} = {E52657B2-EF81-4DB8-87FC-8811984424BB}
 		{65D99DC6-90FD-4C9B-974F-9A48FDEADE41} = {E52657B2-EF81-4DB8-87FC-8811984424BB}
 		{17E8348F-25B5-40F5-AEF5-87AA99DA40DE} = {E52657B2-EF81-4DB8-87FC-8811984424BB}
@@ -131,5 +130,6 @@ Global
 		{F17F56E1-5D7E-40AF-B1F1-EEA2EAF3FDD1} = {E52657B2-EF81-4DB8-87FC-8811984424BB}
 		{21E9664E-9956-4D1F-91A9-410CB6803B77} = {2D584258-98C6-4C7B-802A-DC88A9A567CA}
 		{2457F9AA-5CBA-4472-8170-9053D5491731} = {E52657B2-EF81-4DB8-87FC-8811984424BB}
+		{EBEA679C-DD52-48C5-897F-4EAC499C8068} = {6EDE3E81-6D25-4BA5-83B3-0D2783D1775C}
 	EndGlobalSection
 EndGlobal
