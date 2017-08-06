@@ -1,7 +1,6 @@
 ﻿using ConfigManager.Application;
 using ConfigManager.TransDto.TransModel;
 using ConfigManager.WebManage.Infrastructure;
-using ConfigManager.WebManage.Infrastructure.Filters;
 using JQ.Utils;
 using JQ.Web;
 using JQ.Web.Result;

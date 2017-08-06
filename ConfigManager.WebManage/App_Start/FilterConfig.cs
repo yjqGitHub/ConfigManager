@@ -1,4 +1,4 @@
-﻿using ConfigManager.WebManage.Infrastructure.Filters;
+﻿using ConfigManager.WebManage.Infrastructure;
 using System.Web.Mvc;
 
 namespace ConfigManager.WebManage

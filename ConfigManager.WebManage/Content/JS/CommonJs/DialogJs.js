@@ -101,10 +101,11 @@ function CloseCurrent() {
 /* 对指定元素绑定打开ifram方法
 */
 function InitDailog(document) {
-    $(document).click(function () {
+    $(document).click(function (event) {
+        event && event.stopPropagation();
         var t = this.title || this.name || null;
         var a = this.href || this.alt;
-        top.OpenDailog(t, a);
+        if (window != top) { top.OpenDailog(t, a); } else { OpenDailog(t, a); }
         this.blur();
         return false;
     });
@@ -125,6 +126,7 @@ function OpenDailog(title, url) {
     var w = param['w'];
     var h = param['h'];
     var id = param['frameid'];
+    var isMaxMin = param['maxmin'];
     if (w == null || w == '') {
         w = 800;
     };
@@ -134,12 +136,15 @@ function OpenDailog(title, url) {
     if (id == null) {
         id = '';
     }
+    if (isMaxMin == null) {
+        isMaxMin = false;
+    }
     layer.open({
         type: 2,
         id: id,
         area: [w + 'px', h + 'px'],
-        fix: false, //不固定
-        maxmin: true,
+        fix: true, //不固定
+        maxmin: isMaxMin,
         shade: 0.4,
         title: title,
         content: url

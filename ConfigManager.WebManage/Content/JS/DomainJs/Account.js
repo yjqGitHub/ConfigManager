@@ -13,7 +13,7 @@ $("form").submit(function () {
             data: $(this).serialize()
         }, function (data) {
             ShowSuccessMsg(data.Message || "登录成功");
-            location.href = "/Home/Index";
+            window.location.href = "/Home/Index";
         }, function (error) {
             $("#Code").focus();
             $("#ValidateCode_Img").click();

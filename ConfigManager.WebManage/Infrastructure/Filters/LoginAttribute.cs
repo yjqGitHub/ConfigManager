@@ -3,7 +3,7 @@ using JQ.Web.Result;
 using System;
 using System.Web.Mvc;
 
-namespace ConfigManager.WebManage.Infrastructure.Filters
+namespace ConfigManager.WebManage.Infrastructure
 {
     /// <summary>
     /// Copyright (C) 2017 yjq ∞Ê»®À˘”–°£

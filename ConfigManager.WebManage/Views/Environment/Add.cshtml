@@ -1,17 +1,42 @@
-﻿
+﻿@model EnvironmentAddModel
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout_Edit.cshtml";
 }
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Add</title>
-</head>
-<body>
-    <div> 
-    </div>
-</body>
-</html>
+<div class="page-container">
+    @using (Html.BeginForm("Add", "Environment", FormMethod.Post, new { @class = "form form-horizontal", @id = "form-edit" }))
+    {
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-4"><span class="c-red">*</span>环境名称：</label>
+            <div class="formControls col-xs-4 col-sm-6">
+                @Html.TextBoxFor(m => m.FName, new { @placeholder = "请输入环境名称", @class = "input-text" })
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-4"><span class="c-red">*</span>编码：</label>
+            <div class="formControls col-xs-4 col-sm-6">
+                @Html.TextBoxFor(m => m.FCode, new { @placeholder = "请输入编码", @class = "input-text" })
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-4">密钥：</label>
+            <div class="formControls col-xs-4 col-sm-6">
+                @Html.TextBoxFor(m => m.FSecret, new { @class = "input-text" })
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-4">备注：</label>
+            <div class="formControls col-xs-4 col-sm-6">
+                @Html.TextAreaFor(m => m.FComment, new { @class = "input-text", @rows = "3", @style = "height:80px;" })
+            </div>
+        </div>
+        <div class="row cl">
+            <div class="col-xs-8 col-sm-9 col-xs-offset-6 col-sm-offset-4">
+                <button class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
+                <button onClick="CloseCurrent();" class="btn btn-danger radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+            </div>
+        </div>
+    }
+</div>
+@section Script{
+    <script src="~/Content/JS/DomainJs/Environment.js"></script>
+}

@@ -136,6 +136,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\BaseController.cs" />
+    <Compile Include="Infrastructure\Extensions\LableExtension.cs" />
     <Compile Include="Infrastructure\Filters\LoginAttribute.cs" />
     <Compile Include="Infrastructure\PublicUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -148,10 +149,14 @@
     <Content Include="Content\html5shiv.js" />
     <Content Include="Content\jselect-1.0.js" />
     <Content Include="Content\JS\CommonJs\DialogJs.js" />
+    <Content Include="Content\JS\CommonJs\jquery.validate.js" />
+    <Content Include="Content\JS\CommonJs\jquery.validate.self.js" />
+    <Content Include="Content\JS\CommonJs\jquery.validate.unobtrusive.js" />
     <Content Include="Content\JS\CommonJs\tableHeadFixer.js" />
     <Content Include="Content\JS\CommonJs\ToolJs.js" />
     <Content Include="Content\JS\CommonJs\Validator.js" />
     <Content Include="Content\JS\DomainJs\Account.js" />
+    <Content Include="Content\JS\DomainJs\Environment.js" />
     <Content Include="Content\lib\Hui-iconfont\1.0.8\demo.html" />
     <Content Include="Content\lib\Hui-iconfont\1.0.8\iconfont.css" />
     <Content Include="Content\lib\Hui-iconfont\1.0.8\iconfont.min.css" />
@@ -392,7 +397,9 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout_List.cshtml" />
@@ -507,6 +514,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Environment\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_Layout_Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Environment\Test.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
