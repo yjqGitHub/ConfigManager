@@ -180,7 +180,7 @@ namespace JQ.Result.Operate
         /// <param name="executeActionAsync">异步方法</param>
         /// <param name="callMemberName">调用方法名字</param>
         /// <returns>操作结果</returns>
-        public static async Task<OperateResult> Execute(Func<Task<OperateResult>> executeActionAsync, string callMemberName = null)
+        public static async Task<OperateResult> ExecuteAsync(Func<Task<OperateResult>> executeActionAsync, string callMemberName = null)
         {
             try
             {
@@ -205,7 +205,7 @@ namespace JQ.Result.Operate
         /// <param name="successMessage">成功提示信息</param>
         /// <param name="callMemberName">调用方法名字</param>
         /// <returns>操作结果</returns>
-        public static async Task<OperateResult> Execute(Func<Task> executeActionAsync, string successMessage = null, string callMemberName = null)
+        public static async Task<OperateResult> ExecuteAsync(Func<Task> executeActionAsync, string successMessage = null, string callMemberName = null)
         {
             try
             {

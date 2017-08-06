@@ -1,4 +1,5 @@
 ﻿using ConfigManager.Constant.EnumCollection;
+using JQ.Web;
 using System;
 
 namespace ConfigManager.Domain
@@ -56,5 +57,25 @@ namespace ConfigManager.Domain
         /// 是否已删除
         /// </summary>
         public bool FIsDeleted { get; set; }
+
+        /// <summary>
+        /// 创建操作信息
+        /// </summary>
+        /// <param name="bizType">业务类型</param>
+        /// <param name="operateContent">操作类型</param>
+        /// <param name="operateUserID">用户ID</param>
+        /// <returns>操作信息</returns>
+        public static AdminOperateLogInfo Create(BizType bizType, string operateContent, int operateUserID)
+        {
+            return new AdminOperateLogInfo
+            {
+                FBizType = bizType,
+                FCreateTime = DateTime.Now,
+                FCreateUserID = operateUserID,
+                FIsDeleted = false,
+                FOperateContent = operateContent,
+                FOperaterIP = WebUtil.GetRealIP()
+            };
+        }
     }
 }

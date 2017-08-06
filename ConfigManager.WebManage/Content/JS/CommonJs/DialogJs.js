@@ -95,7 +95,7 @@ function ShowConfirm(msg, confirmCallback) {
  */
 function CloseCurrent() {
     var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
-    parent.layer.close(index); //再执行关闭 
+    parent.layer.close(index); //再执行关闭
 }
 
 /* 对指定元素绑定打开ifram方法
@@ -167,4 +167,17 @@ function ParseQuery(url) {
         Params[key] = val;
     }
     return Params;
+}
+
+/*
+ * 刷新当前frame
+*/
+function RefreshCurrentTopFrame() {
+    top.RefreshCurrent();
+}
+
+//刷新上级frame页面，并关闭当前页面
+function RefreshTopFrameAndClose() {
+    RefreshCurrentTopFrame();
+    CloseCurrent();
 }

@@ -136,7 +136,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\BaseController.cs" />
-    <Compile Include="Infrastructure\Extensions\LableExtension.cs" />
     <Compile Include="Infrastructure\Filters\LoginAttribute.cs" />
     <Compile Include="Infrastructure\PublicUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -520,6 +519,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Environment\Test.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Infrastructure\Extensions\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="NLog.config" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

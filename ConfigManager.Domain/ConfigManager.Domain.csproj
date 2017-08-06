@@ -65,6 +65,10 @@
       <Project>{C888458B-B4E8-4F19-80EA-57F6832FFF57}</Project>
       <Name>ConfigManager.Constant</Name>
     </ProjectReference>
+    <ProjectReference Include="..\JQ\JQ.csproj">
+      <Project>{B56ACFCA-295E-4902-A653-777DCF0C4AF9}</Project>
+      <Name>JQ</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

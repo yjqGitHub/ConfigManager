@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants\ConfigurationConstant.cs" />
+    <Compile Include="Constants\IgnoreFieldsConstant.cs" />
     <Compile Include="EnumCollection\AdminState.cs" />
     <Compile Include="EnumCollection\BizType.cs" />
     <Compile Include="EnumCollection\WebSitePort.cs" />

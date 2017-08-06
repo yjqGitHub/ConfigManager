@@ -5,7 +5,11 @@ function Ajax(config, successCallBack, failedCallBack) {
         if (result.Code == 1) {
             successCallBack && successCallBack(result);
         } else if (result.Code == 1000) {
-            ShowWarningMsg("请先登录");
+            if (window != top) {
+                top.ShowWarningMsg("请先登录");
+            } else {
+                ShowWarningMsg("请先登录");
+            }
             top.location.href = result.RedirectUrl;
         } else {
             if (result.Message && result.Message.trim() != "") {
@@ -16,6 +20,10 @@ function Ajax(config, successCallBack, failedCallBack) {
         HideLoading();
     }).fail(function (err) {
         HideLoading();
-        ShowWarningMsg("请求服务失败");
+        if (window != top) {
+            top.ShowWarningMsg("请求服务失败");
+        } else {
+            ShowWarningMsg("请求服务失败");
+        }
     });
 }

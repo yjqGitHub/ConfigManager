@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extensions\FilterContextExtension.cs" />
+    <Compile Include="Extensions\ModelStateExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Result\AjaxResult.cs" />
     <Compile Include="Result\AjaxState.cs" />

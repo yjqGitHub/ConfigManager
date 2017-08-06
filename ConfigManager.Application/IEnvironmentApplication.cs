@@ -1,4 +1,5 @@
 ﻿using ConfigManager.TransDto.TransDto;
+using ConfigManager.TransDto.TransModel;
 using JQ.Result.Operate;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -19,5 +20,13 @@ namespace ConfigManager.Application
         /// </summary>
         /// <returns></returns>
         Task<OperateResult<IEnumerable<EnvironmentDto>>> LoadEnvironmentListAsync();
+
+        /// <summary>
+        /// 添加环境信息
+        /// </summary>
+        /// <param name="model">环境信息</param>
+        /// <param name="operateUserID">操作人</param>
+        /// <returns>操作结果</returns>
+        Task<OperateResult> AddEnvironmentAsync(EnvironmentAddModel model, int operateUserID);
     }
 }
