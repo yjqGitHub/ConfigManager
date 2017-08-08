@@ -42,6 +42,7 @@
                             <td>@(item.FLastModifyTime?.ToString("yyyy-MM-dd HH:mm:sss"))</td>
                             <td class="td-manage">
                                 <a href="/Environment/Edit/@(item.FID.ToString())?w=700&h=400" title="编辑环境" class="openDialog btn btn-primary size-S radius">编辑</a>
+                                <a href="javascript:DeleteEnvironment(@(item.FID));" title="删除环境" class="btn btn-danger size-S radius">删除</a>
                             </td>
                         </tr>
                     }
@@ -55,5 +56,22 @@
         </table>
     </div>
 </div>
+
+@section Script{
+    <script type="text/javascript">
+        function DeleteEnvironment(id) {
+            top.ShowConfirm("确定要删除此环境吗?", function () {
+                Ajax({
+                    type: "POST",
+                    url: "/Environment/Delete",
+                    data: { environmentID: id }
+                }, function (data) {
+                    window.location.reload();
+                }, function (failData) { });
+            });
+
+        }
+    </script>
+}
 
 

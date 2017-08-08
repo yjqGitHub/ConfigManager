@@ -82,5 +82,17 @@ namespace ConfigManager.WebManage.Controllers
             var operateResult = await _environmentApplication.EditEnvironmentAsync(model, PublicUtil.GetCurrentAdminID());
             return operateResult.ToJsonResult();
         }
+
+        /// <summary>
+        /// 删除环境
+        /// </summary>
+        /// <param name="environmentID">环境ID</param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<JQJsonResult> Delete(int environmentID)
+        {
+            var operateResult = await _environmentApplication.DeleteEnvironmentAsync(environmentID, PublicUtil.GetCurrentAdminID());
+            return operateResult.ToJsonResult();
+        }
     }
 }

@@ -523,7 +523,9 @@
   <ItemGroup>
     <Content Include="Views\Environment\Test.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Views\PubConfigGroup\_Partial_Search.cshtml" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="NLog.config" />
   </ItemGroup>

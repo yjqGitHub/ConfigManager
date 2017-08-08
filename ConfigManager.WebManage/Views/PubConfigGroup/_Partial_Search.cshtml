@@ -1,0 +1,15 @@
+﻿@model ConfigGroupQueryWhereDto
+<div class="page-container-search">
+    @Html.HiddenFor(m => m.EnvironmentID)
+    <div class="form-group">
+        <label>名称:</label>
+        @Html.TextBoxFor(m => m.Name, new { @style = "width:150px" })
+    </div>
+    <div class="form-group">
+        <label>编号:</label>
+        @Html.TextBoxFor(m => m.Code, new { @style = "width:150px" })
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-success radius" id="btnSearch"><i class="Hui-iconfont"></i> 搜索</button>
+    </div>
+</div>

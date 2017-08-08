@@ -6,6 +6,7 @@ using ConfigManager.TransDto.TransDto;
 using ConfigManager.TransDto.TransModel;
 using ConfigManager.UnitOfWork;
 using JQ.Result.Operate;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -109,6 +110,26 @@ namespace ConfigManager.Application.Implement
             {
                 return await _environmentRepository.GetEnvironmentDtoAsync(environmentID);
             }, callMemberName: "EnvironmentApplication-GetEnvironmentInfoAsync");
+        }
+
+        /// <summary>
+        /// 异步删除环境
+        /// </summary>
+        /// <param name="environmentID">环境ID</param>
+        /// <param name="operateUserID">操作人</param>
+        /// <returns>操作结果</returns>
+        public Task<OperateResult> DeleteEnvironmentAsync(int environmentID, int operateUserID)
+        {
+            return OperateUtil.ExecuteAsync(async () =>
+            {
+                await _environmentRepository.UpdateAsync(new
+                {
+                    FIsDeleted = 1,
+                    FLastModifyTime = DateTime.Now,
+                    FLaseModifyUserID = operateUserID
+                }, new { FID = environmentID });
+                _adminOperateLogDomainService.AddOperateLog(BizType.Enviroment, $"删除环境【FID:{environmentID}】", operateUserID);
+            }, callMemberName: "EnvironmentApplication-DeleteEnvironmentAsync");
         }
     }
 }

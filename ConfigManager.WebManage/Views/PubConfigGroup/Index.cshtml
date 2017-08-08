@@ -4,7 +4,7 @@
 <div class="page-header">
     <nav>
         <span class="r">
-            <a href="/PubConfigGroup/Add?environmentID=@(ViewBag.EnvironmentID?.ToString())&w=800&h=600" title="添加配置组" class="openDialog btn btn-primary radius">
+            <a href="/PubConfigGroup/Add?environmentID=@(ViewBag.EnvironmentID?.ToString())&w=700&h=400" title="添加配置组" class="openDialog btn btn-primary radius">
                 <i class="Hui-iconfont">&#xe600;</i> 添加配置组
             </a>
         </span>
@@ -13,29 +13,7 @@
 <div class="page-container">
     @using (Html.BeginForm("Index", "PubConfigGroup", FormMethod.Post, new { @id = "SearchForm" }))
     {
-        <div class="page-container-search">
-            <div class="form-group">
-                <label>AppId:</label>
-                @Html.TextBox("AppId", "", new { @style = "width:150px", @placeholder = "输入AppId" })
-            </div>
-            <div class="form-group"><label>AppId:</label>@Html.TextBox("AppId", "", new { @style = "width:150px", @placeholder = "输入AppId" })</div>
-            <div class="form-group"><label>AppId:</label>@Html.TextBox("AppId", "", new { @style = "width:150px", @placeholder = "输入AppId" })</div>
-            <div class="form-group"><label>AppId:</label>@Html.TextBox("AppId", "", new { @style = "width:150px", @placeholder = "输入AppId" })</div>
-            <div class="form-group"><label>AppId:</label>@Html.TextBox("AppId", "", new { @style = "width:150px", @placeholder = "输入AppId" })</div>
-            <div class="form-group"><label>AppId:</label>@Html.TextBox("AppId", "", new { @style = "width:150px", @placeholder = "输入AppId" })</div>
-            <div class="form-group"><label>AppId:</label>@Html.TextBox("AppId", "", new { @style = "width:150px", @placeholder = "输入AppId" })</div>
-            <div class="form-group"><label>AppId:</label>@Html.TextBox("AppId", "", new { @style = "width:150px", @placeholder = "输入AppId" })</div>
-            <div class="form-group"><label>AppId:</label>@Html.TextBox("AppId", "", new { @style = "width:150px", @placeholder = "输入AppId" })</div>
-            <div class="form-group"><label>AppId:</label>@Html.TextBox("AppId", "", new { @style = "width:150px", @placeholder = "输入AppId" })</div>
-            <div class="form-group"><label>AppId:</label>@Html.TextBox("AppId", "", new { @style = "width:150px", @placeholder = "输入AppId" })</div>
-            <div class="form-group"><label>AppId:</label>@Html.TextBox("AppId", "", new { @style = "width:150px", @placeholder = "输入AppId" })</div>
-            <div class="form-group"><label>AppId:</label>@Html.TextBox("AppId", "", new { @style = "width:150px", @placeholder = "输入AppId" })</div>
-            <div class="form-group"><label>AppId:</label>@Html.TextBox("AppId", "", new { @style = "width:150px", @placeholder = "输入AppId" })</div>
-            <div class="form-group"><label>AppId:</label>@Html.TextBox("AppId", "", new { @style = "width:150px", @placeholder = "输入AppId" })</div>
-            <div class="form-group">
-                <button type="submit" class="btn btn-success radius"><i class="Hui-iconfont"></i> 搜索</button>
-            </div>
-        </div>
+        @Html.Partial("_Partial_Search", ViewBag.QueryWhereDto as ConfigGroupQueryWhereDto)
         <div class="page-container-list">
             <table class="table table-border table-bordered table-bg table-hover" id="table-head-fixer">
                 <thead>
@@ -64,7 +42,7 @@
                                 <td>@item.FName</td>
                                 <td>@item.FCode</td>
                                 <td>@item.GetEnvironmentDesc()</td>
-                                <td>@item.FIsEnabled</td>
+                                <td>@Html.Raw(item.FIsEnabled? "<span class='label label-primary radius'>启用</span>" : "<span class='label label-warning radius'>禁用</span>")</td>
                                 <td>@item.FComment</td>
                                 <td>@(item.FLastModifyTime.ToString("yyyy-MM-dd HH:mm:sss"))</td>
                                 <td class="td-manage">
@@ -85,5 +63,4 @@
             @Html.SelfPager(Model)
         </div>
     }
-
 </div>

@@ -50,5 +50,13 @@ namespace ConfigManager.Application
         /// <param name="environmentID">环境ID</param>
         /// <returns>环境信息</returns>
         Task<OperateResult<EnvironmentDto>> GetEnvironmentInfoAsync(int environmentID);
+
+        /// <summary>
+        /// 异步删除环境
+        /// </summary>
+        /// <param name="environmentID">环境ID</param>
+        /// <param name="operateUserID">操作人</param>
+        /// <returns>操作结果</returns>
+        Task<OperateResult> DeleteEnvironmentAsync(int environmentID, int operateUserID);
     }
 }
