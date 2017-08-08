@@ -45,6 +45,40 @@
                 $("#table-head-fixer").tableHeadFixer();
             }
         }
+        $('.page-container-pager .pager a[title],#Search').on('click', function () {
+            ShowLoading();
+        });
+        $('form').submit(function () {
+            ShowLoading();
+        })
+        //if ($('.form-list-table tbody tr').length > 0) {
+        //    $('.form-list-table:not(.noalt) tbody tr')
+        //        .on("dblclick",
+        //        function (e) {
+        //            var jTrObj = $(this);
+        //            try {
+        //                if (jTrObj.find('.editBtn').length <= 0) {
+        //                    return;
+        //                }
+        //                jTrObj.find('.editBtn')[0].click();
+        //            } catch (e) { }
+        //            return false;
+        //        }
+        //        )
+        //    ;
+        //}
+        ////回车键
+        //document.onkeydown = function (e) {
+        //    if (!e) e = window.event; //火狐中是 window.event
+        //    if ((e.keyCode || e.which) == 13) {
+        //        var obtnSearch = document.getElementById("Search");
+        //        obtnSearch.click();
+        //    }
+        //}
+        //分页切换
+        $("#PageSize").change(function () {
+            $("#SearchForm").submit();
+        })
     </script>
     @RenderSection("Script", false)
 </body>

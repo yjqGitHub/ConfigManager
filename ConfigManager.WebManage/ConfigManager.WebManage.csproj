@@ -137,6 +137,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\BaseController.cs" />
+    <Compile Include="Infrastructure\Extensions\PageHelper.cs" />
     <Compile Include="Infrastructure\Filters\LoginAttribute.cs" />
     <Compile Include="Infrastructure\PublicUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -522,9 +523,7 @@
   <ItemGroup>
     <Content Include="Views\Environment\Test.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Infrastructure\Extensions\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="NLog.config" />
   </ItemGroup>

@@ -1,7 +1,6 @@
 ﻿@using JQ.Result.Page;
 @model IPageResult<PubConfigGroupDto>
-@{
-}
+
 <div class="page-header">
     <nav>
         <span class="r">
@@ -12,80 +11,79 @@
     </nav>
 </div>
 <div class="page-container">
-    <div class="page-container-search">
-        <div class="form-group">
-            <label>AppId:</label>
-            @Html.TextBox("AppId", "", new { @style = "width:150px", @placeholder = "输入AppId" })
+    @using (Html.BeginForm("Index", "PubConfigGroup", FormMethod.Post, new { @id = "SearchForm" }))
+    {
+        <div class="page-container-search">
+            <div class="form-group">
+                <label>AppId:</label>
+                @Html.TextBox("AppId", "", new { @style = "width:150px", @placeholder = "输入AppId" })
+            </div>
+            <div class="form-group"><label>AppId:</label>@Html.TextBox("AppId", "", new { @style = "width:150px", @placeholder = "输入AppId" })</div>
+            <div class="form-group"><label>AppId:</label>@Html.TextBox("AppId", "", new { @style = "width:150px", @placeholder = "输入AppId" })</div>
+            <div class="form-group"><label>AppId:</label>@Html.TextBox("AppId", "", new { @style = "width:150px", @placeholder = "输入AppId" })</div>
+            <div class="form-group"><label>AppId:</label>@Html.TextBox("AppId", "", new { @style = "width:150px", @placeholder = "输入AppId" })</div>
+            <div class="form-group"><label>AppId:</label>@Html.TextBox("AppId", "", new { @style = "width:150px", @placeholder = "输入AppId" })</div>
+            <div class="form-group"><label>AppId:</label>@Html.TextBox("AppId", "", new { @style = "width:150px", @placeholder = "输入AppId" })</div>
+            <div class="form-group"><label>AppId:</label>@Html.TextBox("AppId", "", new { @style = "width:150px", @placeholder = "输入AppId" })</div>
+            <div class="form-group"><label>AppId:</label>@Html.TextBox("AppId", "", new { @style = "width:150px", @placeholder = "输入AppId" })</div>
+            <div class="form-group"><label>AppId:</label>@Html.TextBox("AppId", "", new { @style = "width:150px", @placeholder = "输入AppId" })</div>
+            <div class="form-group"><label>AppId:</label>@Html.TextBox("AppId", "", new { @style = "width:150px", @placeholder = "输入AppId" })</div>
+            <div class="form-group"><label>AppId:</label>@Html.TextBox("AppId", "", new { @style = "width:150px", @placeholder = "输入AppId" })</div>
+            <div class="form-group"><label>AppId:</label>@Html.TextBox("AppId", "", new { @style = "width:150px", @placeholder = "输入AppId" })</div>
+            <div class="form-group"><label>AppId:</label>@Html.TextBox("AppId", "", new { @style = "width:150px", @placeholder = "输入AppId" })</div>
+            <div class="form-group"><label>AppId:</label>@Html.TextBox("AppId", "", new { @style = "width:150px", @placeholder = "输入AppId" })</div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-success radius"><i class="Hui-iconfont"></i> 搜索</button>
+            </div>
         </div>
-        <div class="form-group"><label>AppId:</label>@Html.TextBox("AppId", "", new { @style = "width:150px", @placeholder = "输入AppId" })</div>
-        <div class="form-group"><label>AppId:</label>@Html.TextBox("AppId", "", new { @style = "width:150px", @placeholder = "输入AppId" })</div>
-        <div class="form-group"><label>AppId:</label>@Html.TextBox("AppId", "", new { @style = "width:150px", @placeholder = "输入AppId" })</div>
-        <div class="form-group"><label>AppId:</label>@Html.TextBox("AppId", "", new { @style = "width:150px", @placeholder = "输入AppId" })</div>
-        <div class="form-group"><label>AppId:</label>@Html.TextBox("AppId", "", new { @style = "width:150px", @placeholder = "输入AppId" })</div>
-        <div class="form-group"><label>AppId:</label>@Html.TextBox("AppId", "", new { @style = "width:150px", @placeholder = "输入AppId" })</div>
-        <div class="form-group"><label>AppId:</label>@Html.TextBox("AppId", "", new { @style = "width:150px", @placeholder = "输入AppId" })</div>
-        <div class="form-group"><label>AppId:</label>@Html.TextBox("AppId", "", new { @style = "width:150px", @placeholder = "输入AppId" })</div>
-        <div class="form-group"><label>AppId:</label>@Html.TextBox("AppId", "", new { @style = "width:150px", @placeholder = "输入AppId" })</div>
-        <div class="form-group"><label>AppId:</label>@Html.TextBox("AppId", "", new { @style = "width:150px", @placeholder = "输入AppId" })</div>
-        <div class="form-group"><label>AppId:</label>@Html.TextBox("AppId", "", new { @style = "width:150px", @placeholder = "输入AppId" })</div>
-        <div class="form-group"><label>AppId:</label>@Html.TextBox("AppId", "", new { @style = "width:150px", @placeholder = "输入AppId" })</div>
-        <div class="form-group"><label>AppId:</label>@Html.TextBox("AppId", "", new { @style = "width:150px", @placeholder = "输入AppId" })</div>
-        <div class="form-group"><label>AppId:</label>@Html.TextBox("AppId", "", new { @style = "width:150px", @placeholder = "输入AppId" })</div>
-        <div class="form-group">
-            <button type="submit" class="btn btn-success radius"><i class="Hui-iconfont"></i> 搜索</button>
-        </div>
-    </div>
-    <div class="page-container-list">
-        <table class="table table-border table-bordered table-bg table-hover" id="table-head-fixer">
-            <thead>
-                <tr class="text-c">
-                    <th width="25">
-                        编号
-                    </th>
-                    <th>名字</th>
-                    <th>编码</th>
-                    <th>环境信息</th>
-                    <th>是否启用</th>
-                    <th>备注</th>
-                    <th>最后修改时间</th>
-                    <th>操作</th>
-                </tr>
-            </thead>
-            <tbody>
-                @if (Model != null && Model.Count() > 0)
+        <div class="page-container-list">
+            <table class="table table-border table-bordered table-bg table-hover" id="table-head-fixer">
+                <thead>
+                    <tr class="text-c">
+                        <th width="25">
+                            编号
+                        </th>
+                        <th>名字</th>
+                        <th>编码</th>
+                        <th>环境信息</th>
+                        <th>是否启用</th>
+                        <th>备注</th>
+                        <th>最后修改时间</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Count() > 0)
                 {
                     int currentRow = 1;
 
                     foreach (var item in Model)
                     {
-                        <tr class="text-c">
-                            <td>@currentRow.ToString()</td>
-                            <td>@item.FName</td>
-                            <td>@item.FCode</td>
-                            <td>@item.GetEnvironmentDesc()</td>
-                            <td>@item.FIsEnabled</td>
-                            <td>@item.FComment</td>
-                            <td>@(item.FLastModifyTime.ToString("yyyy-MM-dd HH:mm:sss"))</td>
-                            <td class="td-manage">
-                                <a href="/PubConfigGroup/Edit/@(item.FID.ToString())?w=700&h=400" title="编辑配置组" class="openDialog btn btn-primary size-S radius">编辑</a>
-                            </td>
-                        </tr>
-                        currentRow++;
+                            <tr class="text-c">
+                                <td>@currentRow.ToString()</td>
+                                <td>@item.FName</td>
+                                <td>@item.FCode</td>
+                                <td>@item.GetEnvironmentDesc()</td>
+                                <td>@item.FIsEnabled</td>
+                                <td>@item.FComment</td>
+                                <td>@(item.FLastModifyTime.ToString("yyyy-MM-dd HH:mm:sss"))</td>
+                                <td class="td-manage">
+                                    <a href="/PubConfigGroup/Edit/@(item.FID.ToString())?w=700&h=400" title="编辑配置组" class="openDialog btn btn-primary size-S radius">编辑</a>
+                                </td>
+                            </tr>
+                            currentRow++;
+                        }
                     }
-                }
-                else
-                {
-                    @Html.Raw("<tr><td style='color:red;text-align:center;' colspan='8'>暂无记录</td></tr>")
-                }
-            </tbody>
-        </table>
-    </div>
-    @*<div class="page-container-pager noselect">
-            <div class="pager-info" id="DataTables_Table_0_info" role="status" aria-live="polite">显示 1 到 1 ，共 1 条</div>
-            <div class="pager">
-                <a class="pager-button disabled" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0" id="DataTables_Table_0_previous">上一页</a>
-                <span><a class="pager-button current" aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0">1</a></span>
-                <a class="pager-button" aria-controls="DataTables_Table_0" data-dt-idx="2" tabindex="0" id="DataTables_Table_0_next">下一页</a>
-            </div>
-        </div>*@
+                    else
+                    {
+                        @Html.Raw("<tr><td style='color:red;text-align:center;' colspan='8'>暂无记录</td></tr>")
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="page-container-pager noselect">
+            @Html.SelfPager(Model)
+        </div>
+    }
+
 </div>
