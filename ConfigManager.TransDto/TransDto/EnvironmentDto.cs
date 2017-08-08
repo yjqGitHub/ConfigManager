@@ -40,5 +40,10 @@ namespace ConfigManager.TransDto.TransDto
         /// 最后修改时间
         /// </summary>
         public DateTime? FLastModifyTime { get; set; }
+
+        public string GetDescription()
+        {
+            return $"【名称：{FName},编号：{FCode}】";
+        }
     }
 }

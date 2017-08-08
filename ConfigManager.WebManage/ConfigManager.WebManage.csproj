@@ -132,6 +132,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\EnvironmentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PubConfigGroupController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -155,6 +156,7 @@
     <Content Include="Content\JS\CommonJs\ToolJs.js" />
     <Content Include="Content\JS\CommonJs\Validator.js" />
     <Content Include="Content\JS\DomainJs\Account.js" />
+    <Content Include="Content\JS\CommonJs\CommonEdit.js" />
     <Content Include="Content\JS\DomainJs\Environment.js" />
     <Content Include="Content\lib\Hui-iconfont\1.0.8\demo.html" />
     <Content Include="Content\lib\Hui-iconfont\1.0.8\iconfont.css" />
@@ -525,6 +527,27 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="NLog.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Environment\_Environment_Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\NotFind.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Environment\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\PubConfigGroup\Add.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\PubConfigGroup\_PubConfigGroup_Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\PubConfigGroup\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\PubConfigGroup\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

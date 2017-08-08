@@ -1,6 +1,5 @@
 ﻿using ConfigManager.Constant.Constants;
 using ConfigManager.Constant.EnumCollection;
-using ConfigManager.Domain;
 using ConfigManager.DomainService;
 using ConfigManager.Repository;
 using ConfigManager.TransDto.TransDto;
@@ -23,19 +22,19 @@ namespace ConfigManager.Application.Implement
     {
         private readonly IEnvironmentRepository _environmentRepository;
         private readonly IEnvironmentDomainService _environmentDomainService;
-        private readonly IAdminOperateLogRepository _adminOperateLogRepository;
+        private readonly IAdminOperateLogDomainService _adminOperateLogDomainService;
         private readonly IUnitOfWork _unitOfWork;
 
-        public EnvironmentApplication(IEnvironmentRepository environmentRepository, IEnvironmentDomainService environmentDomainService, IUnitOfWork unitOfWork, IAdminOperateLogRepository adminOperateLogRepository)
+        public EnvironmentApplication(IEnvironmentRepository environmentRepository, IEnvironmentDomainService environmentDomainService, IUnitOfWork unitOfWork, IAdminOperateLogDomainService adminOperateLogDomainService)
         {
             _environmentRepository = environmentRepository;
             _environmentDomainService = environmentDomainService;
             _unitOfWork = unitOfWork;
-            _adminOperateLogRepository = adminOperateLogRepository;
+            _adminOperateLogDomainService = adminOperateLogDomainService;
         }
 
         /// <summary>
-        /// 获取环境列表
+        /// 异步获取环境列表
         /// </summary>
         /// <returns></returns>
         public Task<OperateResult<IEnumerable<EnvironmentDto>>> LoadEnvironmentListAsync()
@@ -47,23 +46,69 @@ namespace ConfigManager.Application.Implement
         }
 
         /// <summary>
-        /// 添加环境信息
+        /// 异步添加环境信息
         /// </summary>
         /// <param name="model">环境信息</param>
         /// <param name="operateUserID">操作人</param>
         /// <returns>操作结果</returns>
-        public Task<OperateResult> AddEnvironmentAsync(EnvironmentAddModel model, int operateUserID)
+        public Task<OperateResult> AddEnvironmentAsync(EnvironmentEditModel model, int operateUserID)
         {
             return OperateUtil.ExecuteAsync(async () =>
            {
                var environmentInfo = _environmentDomainService.Create(model, operateUserID);
                await _environmentDomainService.CheckAsync(environmentInfo);
-               var operateLog = AdminOperateLogInfo.Create(BizType.Enviroment, $"添加{environmentInfo.GetDescription()}", operateUserID);
-               _unitOfWork.Begin();
-               _environmentRepository.InsertOne(environmentInfo, IgnoreFieldsConstant.Ignore_FID);
-               _adminOperateLogRepository.InsertOne(operateLog, IgnoreFieldsConstant.Ignore_FID);
-               _unitOfWork.Commit();
+               _unitOfWork.ExecuteTran(() =>
+               {
+                   _environmentRepository.InsertOne(environmentInfo, IgnoreFieldsConstant.Ignore_FID);
+               });
+               _adminOperateLogDomainService.AddOperateLog(BizType.Enviroment, $"添加{environmentInfo.GetDescription()}", operateUserID);
            }, callMemberName: "EnvironmentApplication-AddEnvironmentAsync");
+        }
+
+        /// <summary>
+        /// 异步获取环境编辑信息
+        /// </summary>
+        /// <param name="environmentID">环境ID</param>
+        /// <returns>环境编辑信息</returns>
+        public Task<OperateResult<EnvironmentEditModel>> GetEnvironmentModelAsync(int environmentID)
+        {
+            return OperateUtil.ExecuteAsync(async () =>
+            {
+                return await _environmentRepository.GetDtoAsync<EnvironmentEditModel>(new { FID = environmentID, FIsDeleted = 0 });
+            }, callMemberName: "EnvironmentApplication-GetEnvironmentModel");
+        }
+
+        /// <summary>
+        /// 异步编辑环境信息
+        /// </summary>
+        /// <param name="model">环境信息</param>
+        /// <param name="operateUserID">操作人</param>
+        /// <returns>操作结果</returns>
+        public Task<OperateResult> EditEnvironmentAsync(EnvironmentEditModel model, int operateUserID)
+        {
+            return OperateUtil.ExecuteAsync(async () =>
+            {
+                var environmentInfo = _environmentDomainService.Create(model, operateUserID);
+                await _environmentDomainService.CheckAsync(environmentInfo);
+                _unitOfWork.ExecuteTran(() =>
+                {
+                    _environmentRepository.Update(environmentInfo, new { FID = environmentInfo.FID }, ignoreFields: IgnoreFieldsConstant.Ignore_KeyAndCreate);
+                });
+                _adminOperateLogDomainService.AddOperateLog(BizType.Enviroment, $"修改{environmentInfo.GetDescription()}", operateUserID);
+            }, callMemberName: "EnvironmentApplication-AddEnvironmentAsync");
+        }
+
+        /// <summary>
+        /// 异步获取环境信息
+        /// </summary>
+        /// <param name="environmentID">环境ID</param>
+        /// <returns>环境信息</returns>
+        public Task<OperateResult<EnvironmentDto>> GetEnvironmentInfoAsync(int environmentID)
+        {
+            return OperateUtil.ExecuteAsync(async () =>
+            {
+                return await _environmentRepository.GetEnvironmentDtoAsync(environmentID);
+            }, callMemberName: "EnvironmentApplication-GetEnvironmentInfoAsync");
         }
     }
 }

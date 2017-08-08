@@ -1,4 +1,6 @@
-﻿namespace JQ.DataAccess.Uow
+﻿using System;
+
+namespace JQ.DataAccess.Uow
 {
     /// <summary>
     /// Copyright (C) 2017 yjq 版权所有。
@@ -23,5 +25,17 @@
         /// 回滚
         /// </summary>
         void Rollback();
+
+        /// <summary>
+        /// 执行事务,失败时自动回滚,有异常时回滚后抛出
+        /// </summary>
+        /// <param name="action"></param>
+        bool ExecuteTran(Func<bool> action);
+
+        /// <summary>
+        /// 执行事务，有异常时回滚后抛出
+        /// </summary>
+        /// <param name="action"></param>
+        void ExecuteTran(Action action);
     }
 }

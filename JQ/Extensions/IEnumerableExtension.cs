@@ -66,5 +66,40 @@ namespace JQ.Extensions
         {
             return !(enumerable.IsNotEmpty());
         }
+
+        /// <summary>
+        /// 判断条件之后再添加
+        /// </summary>
+        /// <typeparam name="T">类型</typeparam>
+        /// <param name="list">数组信息</param>
+        /// <param name="condition">判断条件</param>
+        /// <param name="value">要添加的值</param>
+        /// <returns></returns>
+        public static List<T> AddIf<T>(this List<T> list, bool condition, T value)
+        {
+            if (condition)
+            {
+                list.Add(value);
+            }
+            return list;
+        }
+
+        /// <summary>
+        /// 判断条件之后再添加
+        /// </summary>
+        /// <typeparam name="T">类型</typeparam>
+        /// <param name="list">数组信息</param>
+        /// <param name="condition">判断条件</param>
+        /// <param name="value">要添加的值</param>
+        /// <returns></returns>
+        public static List<T> AddIf<T>(this List<T> list, Func<bool> condition, T value)
+        {
+            if (condition != null && condition())
+            {
+                list.Add(value);
+            }
+
+            return list;
+        }
     }
 }

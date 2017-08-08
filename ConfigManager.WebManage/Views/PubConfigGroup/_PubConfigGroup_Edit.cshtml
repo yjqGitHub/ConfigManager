@@ -1,0 +1,40 @@
+﻿@model PubConfigGroupEditModel
+@Html.HiddenFor(m => m.FID)
+<div class="row cl">
+    <label class="form-label col-xs-4 col-sm-4"><span class="c-red">*</span>所属环境：</label>
+    <div class="formControls col-xs-4 col-sm-6">
+        @(Model.FEnvironmentName + "【" + Model.FEnvironmentCode + "】")
+        @Html.HiddenFor(m => m.FEnvironmentID)
+    </div>
+</div>
+<div class="row cl">
+    <label class="form-label col-xs-4 col-sm-4"><span class="c-red">*</span>配置组：</label>
+    <div class="formControls col-xs-4 col-sm-6">
+        @Html.TextBoxFor(m => m.FName, new { @placeholder = "配置组名称", @class = "input-text" })
+    </div>
+</div>
+<div class="row cl">
+    <label class="form-label col-xs-4 col-sm-4"><span class="c-red">*</span>编码：</label>
+    <div class="formControls col-xs-4 col-sm-6">
+        @Html.TextBoxFor(m => m.FCode, new { @placeholder = "请输入编码", @class = "input-text" })
+    </div>
+</div>
+<div class="row cl">
+    <label class="form-label col-xs-4 col-sm-4">是否启用：</label>
+    <div class="formControls col-xs-4 col-sm-6">
+        @Html.RadioButtonFor(m => m.FIsEnabled, true) 启用
+        @Html.RadioButtonFor(m => m.FIsEnabled, false) 禁用
+    </div>
+</div>
+<div class="row cl">
+    <label class="form-label col-xs-4 col-sm-4">备注：</label>
+    <div class="formControls col-xs-4 col-sm-6">
+        @Html.TextAreaFor(m => m.FComment, new { @class = "input-text", @rows = "3", @style = "height:80px;" })
+    </div>
+</div>
+<div class="row cl" style="text-align:center;">
+    <div>
+        <button class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
+        <button onClick="CloseCurrent();" class="btn btn-danger radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+    </div>
+</div>

@@ -73,5 +73,51 @@ namespace JQ.DataAccess.Uow
         {
             DataAccess.RollbackTran();
         }
+
+        /// <summary>
+        /// 执行事务,失败时自动回滚,有异常时回滚后抛出
+        /// </summary>
+        /// <param name="action"></param>
+        public virtual bool ExecuteTran(Func<bool> action)
+        {
+            try
+            {
+                Begin();
+                var isSuccess = action();
+                if (isSuccess)
+                {
+                    Commit();
+                }
+                else
+                {
+                    Rollback();
+                }
+                return isSuccess;
+            }
+            catch
+            {
+                Rollback();
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// 执行事务，有异常时回滚后抛出
+        /// </summary>
+        /// <param name="action"></param>
+        public virtual void ExecuteTran(Action action)
+        {
+            try
+            {
+                Begin();
+                action();
+                Commit();
+            }
+            catch
+            {
+                Rollback();
+                throw;
+            }
+        }
     }
 }

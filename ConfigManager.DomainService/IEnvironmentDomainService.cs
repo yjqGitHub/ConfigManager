@@ -14,7 +14,7 @@ namespace ConfigManager.DomainService
     public interface IEnvironmentDomainService
     {
         /// <summary>
-        /// 异步判断是否可以新增
+        /// 异步判断是否可以新增或修改
         /// </summary>
         /// <param name="info">环境信息</param>
         /// <returns></returns>
@@ -26,6 +26,6 @@ namespace ConfigManager.DomainService
         /// <param name="model">添加信息</param>
         /// <param name="currentUserID">当前用户信息</param>
         /// <returns>环境信息</returns>
-        EnvironmentInfo Create(EnvironmentAddModel model, int currentUserID);
+        EnvironmentInfo Create(EnvironmentEditModel model, int currentUserID);
     }
 }

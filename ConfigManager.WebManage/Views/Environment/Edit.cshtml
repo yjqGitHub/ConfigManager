@@ -3,11 +3,11 @@
     Layout = "~/Views/Shared/_Layout_Edit.cshtml";
 }
 <div class="page-container">
-    @using (Html.BeginForm("Add", "Environment", FormMethod.Post, new { @class = "form form-horizontal", @id = "form-edit" }))
+    @using (Html.BeginForm("Edit", "Environment", FormMethod.Post, new { @class = "form form-horizontal", @id = "form-edit" }))
     {
         @Html.Partial("_Environment_Edit")
     }
 </div>
 @section Script{
-    <script src="~/Content/JS/CommonJs/CommonEdit.js"></script>
+   <script src="~/Content/JS/CommonJs/CommonEdit.js"></script>
 }

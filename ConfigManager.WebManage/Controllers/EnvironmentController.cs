@@ -39,13 +39,47 @@ namespace ConfigManager.WebManage.Controllers
         /// <param name="model">环境信息</param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<JQJsonResult> Add(EnvironmentAddModel model)
+        public async Task<JQJsonResult> Add(EnvironmentEditModel model)
         {
             if (!ModelState.IsValid)
             {
                 return ResultUtil.Failed(ModelState.GetFirstErrorMsg());
             }
             var operateResult = await _environmentApplication.AddEnvironmentAsync(model, PublicUtil.GetCurrentAdminID());
+            return operateResult.ToJsonResult();
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> Edit(int? id)
+        {
+            if (id == null || id.Value <= 0)
+            {
+                return View("~/Views/Shared/NotFind.cshtml");
+            }
+            var operateResult = await _environmentApplication.GetEnvironmentModelAsync(id.Value);
+            if (operateResult.SuccessAndValueNotNull)
+            {
+                return View(operateResult.Value);
+            }
+            else
+            {
+                return View("~/Views/Shared/NotFind.cshtml");
+            }
+        }
+
+        /// <summary>
+        /// 修改环境信息
+        /// </summary>
+        /// <param name="model">环境信息</param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<JQJsonResult> Edit(EnvironmentEditModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return ResultUtil.Failed(ModelState.GetFirstErrorMsg());
+            }
+            var operateResult = await _environmentApplication.EditEnvironmentAsync(model, PublicUtil.GetCurrentAdminID());
             return operateResult.ToJsonResult();
         }
     }

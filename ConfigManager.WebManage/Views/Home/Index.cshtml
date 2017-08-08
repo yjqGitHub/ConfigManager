@@ -1,5 +1,6 @@
 ﻿@{
     Layout = null;
+    var environmentList = ViewBag.EnvironmentList as IEnumerable<EnvironmentDto>;
 }
 <!DOCTYPE HTML>
 <html>
@@ -60,14 +61,20 @@
                     </ul>
                 </dd>
             </dl>
-            <dl id="menu-article">
-                <dt><i class="Hui-iconfont">&#xe616;</i> 资讯管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
-                <dd>
-                    <ul>
-                        <li><a data-href="article-list.html" data-title="资讯管理" href="javascript:void(0)">资讯管理</a></li>
-                    </ul>
-                </dd>
-            </dl>
+            @if (environmentList != null && environmentList.Any())
+            {
+                <dl>
+                    <dt><i class="Hui-iconfont">&#xe611;</i>配置组<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+                    <dd>
+                        @foreach (var item in environmentList)
+                        {
+                            <ul>
+                                <li><a data-href="/PubConfigGroup/Index?EnvironmentID=@(item.FID)" data-title="@(item.FName+"配置组")" href="javascript:void(0)">@(item.FName+"配置组")</a></li>
+                            </ul>
+                        }
+                    </dd>
+                </dl>
+            }
         </div>
     </aside>
     <section class="Hui-article-box">
@@ -101,18 +108,18 @@
     <!--请在下方写此页面业务相关的脚本-->
 
     <script type="text/javascript">
-            $(function () {
+        $(function () {
 
-            });
-            /*个人信息*/
-            function myselfinfo() {
-                $.ajax({
-                    type: "post",
-                    url: "/Home/Test",
-                    success: function () { },
-                    error:function(){}
-                })
-            }
+        });
+        /*个人信息*/
+        function myselfinfo() {
+            $.ajax({
+                type: "post",
+                url: "/Home/Test",
+                success: function () { },
+                error: function () { }
+            })
+        }
 
 
 

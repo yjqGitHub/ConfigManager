@@ -30,10 +30,10 @@ namespace ConfigManager.DomainService.Implement
         /// <param name="model">添加信息</param>
         /// <param name="currentUserID">当前用户信息</param>
         /// <returns>环境信息</returns>
-        public EnvironmentInfo Create(EnvironmentAddModel model, int currentUserID)
+        public EnvironmentInfo Create(EnvironmentEditModel model, int currentUserID)
         {
             model.NotNull("环境信息不能为空");
-            return new EnvironmentInfo
+            var info = new EnvironmentInfo
             {
                 FCode = model.FCode,
                 FComment = model.FComment,
@@ -43,10 +43,17 @@ namespace ConfigManager.DomainService.Implement
                 FName = model.FName,
                 FSecret = model.FSecret
             };
+            if (model.FID > 0)
+            {
+                info.FID = model.FID;
+                info.FLaseModifyUserID = currentUserID;
+                info.FLastModifyTime = DateTime.Now;
+            }
+            return info;
         }
 
         /// <summary>
-        /// 异步判断是否可以新增
+        /// 异步判断是否可以新增或修改
         /// </summary>
         /// <param name="info">环境信息</param>
         /// <returns></returns>
@@ -56,12 +63,21 @@ namespace ConfigManager.DomainService.Implement
             info.FName.NotNullAndNotEmptyWhiteSpace("环境名称不能为空");
             info.FCode.NotNullAndNotEmptyWhiteSpace("编号不能为空");
             //判断是否存在相同的code
-            var existesInfo = await _environmentRepository.GetInfoAsync(new { FCode = info.FCode, FIsDeleted = 0 }, isWrite: true);
-            if (existesInfo != null)
+            var existCodeInfo = await _environmentRepository.GetInfoAsync(new { FCode = info.FCode, FIsDeleted = 0 }, isWrite: true);
+            if (existCodeInfo != null)
             {
-                if (info.FID <= 0 || (info.FID > 0 && existesInfo.FID != info.FID))
+                if (info.FID <= 0 || (info.FID > 0 && existCodeInfo.FID != info.FID))
                 {
                     throw new BizException($"编号【{info.FCode}】已存在");
+                }
+            }
+            //判断是否存在相同的名字
+            var existNameInfo = await _environmentRepository.GetInfoAsync(new { FName = info.FName, FIsDeleted = 0 }, isWrite: true);
+            if (existNameInfo != null)
+            {
+                if (info.FID <= 0 || (info.FID > 0 && existNameInfo.FID != info.FID))
+                {
+                    throw new BizException($"名字【{info.FCode}】已存在");
                 }
             }
         }

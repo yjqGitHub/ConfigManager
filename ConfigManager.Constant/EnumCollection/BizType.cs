@@ -39,6 +39,12 @@ namespace ConfigManager.Constant.EnumCollection
         /// 项目
         /// </summary>
         [Description("项目")]
-        Application = 5
+        Application = 5,
+
+        /// <summary>
+        /// 配置组
+        /// </summary>
+        [Description("配置组")]
+        ConfigGroup = 6
     }
 }

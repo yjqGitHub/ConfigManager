@@ -1,0 +1,13 @@
+﻿@model PubConfigGroupEditModel
+@{
+    Layout = "~/Views/Shared/_Layout_Edit.cshtml";
+}
+<div class="page-container">
+    @using (Html.BeginForm("Add", "PubConfigGroup", FormMethod.Post, new { @class = "form form-horizontal", @id = "form-edit" }))
+    {
+        @Html.Partial("_PubConfigGroup_Edit")
+    }
+</div>
+@section Script{
+    <script src="~/Content/JS/CommonJs/CommonEdit.js"></script>
+}

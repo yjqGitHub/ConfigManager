@@ -40,7 +40,9 @@
                             <td>@item.FSecret</td>
                             <td>@item.FComment</td>
                             <td>@(item.FLastModifyTime?.ToString("yyyy-MM-dd HH:mm:sss"))</td>
-                            <td class="td-manage">操做</td>
+                            <td class="td-manage">
+                                <a href="/Environment/Edit/@(item.FID.ToString())?w=700&h=400" title="编辑环境" class="openDialog btn btn-primary size-S radius">编辑</a>
+                            </td>
                         </tr>
                     }
                     currentRow++;

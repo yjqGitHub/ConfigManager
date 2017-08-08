@@ -24,7 +24,7 @@ namespace ConfigManager.Repository.Implement
         }
 
         /// <summary>
-        /// 获取环境列表
+        /// 异步获取环境列表
         /// </summary>
         /// <returns>环境列表</returns>
         public Task<IEnumerable<EnvironmentDto>> LoadEnvironmentListAsync()
@@ -32,6 +32,18 @@ namespace ConfigManager.Repository.Implement
             string sql = "SELECT FID,FName,FCode,FSecret,FComment,ISNULL(FLastModifyTime,FCreateTime) FLastModifyTime FROM " + TableName + " WITH(NOLOCK) WHERE FIsDeleted=0 ORDER BY ISNULL(FLastModifyTime,FCreateTime) DESC";
             SqlQuery sqlQuery = new SqlQuery(sql);
             return QueryListAsync<EnvironmentDto>(sqlQuery);
+        }
+
+        /// <summary>
+        /// 异步获取环境传输信息
+        /// </summary>
+        /// <param name="environmentID">环境ID</param>
+        /// <returns>环境传输信息</returns>
+        public Task<EnvironmentDto> GetEnvironmentDtoAsync(int environmentID)
+        {
+            string sql = "SELECT FID,FName,FCode,FSecret,FComment,ISNULL(FLastModifyTime,FCreateTime) FLastModifyTime FROM " + TableName + " WITH(NOLOCK) WHERE FID=@FID AND FIsDeleted=0;";
+            SqlQuery sqlQuery = new SqlQuery(sql, new { FID = environmentID });
+            return SingleOrDefaultAsync<EnvironmentDto>(sqlQuery);
         }
     }
 }

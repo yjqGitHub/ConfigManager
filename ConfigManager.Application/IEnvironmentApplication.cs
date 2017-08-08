@@ -16,17 +16,39 @@ namespace ConfigManager.Application
     public interface IEnvironmentApplication
     {
         /// <summary>
-        /// 获取环境列表
+        /// 异步获取环境列表
         /// </summary>
         /// <returns></returns>
         Task<OperateResult<IEnumerable<EnvironmentDto>>> LoadEnvironmentListAsync();
 
         /// <summary>
-        /// 添加环境信息
+        /// 异步添加环境信息
         /// </summary>
         /// <param name="model">环境信息</param>
         /// <param name="operateUserID">操作人</param>
         /// <returns>操作结果</returns>
-        Task<OperateResult> AddEnvironmentAsync(EnvironmentAddModel model, int operateUserID);
+        Task<OperateResult> AddEnvironmentAsync(EnvironmentEditModel model, int operateUserID);
+
+        /// <summary>
+        /// 异步获取环境编辑信息
+        /// </summary>
+        /// <param name="environmentID">环境ID</param>
+        /// <returns>环境编辑信息</returns>
+        Task<OperateResult<EnvironmentEditModel>> GetEnvironmentModelAsync(int environmentID);
+
+        /// <summary>
+        /// 异步编辑环境信息
+        /// </summary>
+        /// <param name="model">环境信息</param>
+        /// <param name="operateUserID">操作人</param>
+        /// <returns>操作结果</returns>
+        Task<OperateResult> EditEnvironmentAsync(EnvironmentEditModel model, int operateUserID);
+
+        /// <summary>
+        /// 异步获取环境信息
+        /// </summary>
+        /// <param name="environmentID">环境ID</param>
+        /// <returns>环境信息</returns>
+        Task<OperateResult<EnvironmentDto>> GetEnvironmentInfoAsync(int environmentID);
     }
 }

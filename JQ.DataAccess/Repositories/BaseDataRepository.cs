@@ -468,6 +468,30 @@ namespace JQ.DataAccess.Repositories
         }
 
         /// <summary>
+        /// 查询传输对象
+        /// </summary>
+        /// <typeparam name="TDto">茶树对象类型</typeparam>
+        /// <param name="query">查询信息</param>
+        /// <param name="isWrite">是否为写</param>
+        /// <returns>传输对象</returns>
+        protected TDto SingleOrDefault<TDto>(SqlQuery query, bool isWrite = false)
+        {
+            return GetDataAccess(isWrite: isWrite).QuerySingleOrDefault<TDto>(query);
+        }
+
+        /// <summary>
+        /// 异步查询传输对象
+        /// </summary>
+        /// <typeparam name="TDto">茶树对象类型</typeparam>
+        /// <param name="query">查询信息</param>
+        /// <param name="isWrite">是否为写</param>
+        /// <returns>传输对象</returns>
+        protected Task<TDto> SingleOrDefaultAsync<TDto>(SqlQuery query, bool isWrite = false)
+        {
+            return GetDataAccess(isWrite: isWrite).QuerySingleOrDefaultAsync<TDto>(query);
+        }
+
+        /// <summary>
         /// 查询传输对象列表
         /// </summary>
         /// <typeparam name="TDto">茶树对象类型</typeparam>
@@ -527,25 +551,7 @@ namespace JQ.DataAccess.Repositories
         /// <returns>分页查询结果</returns>
         protected IEnumerable<TModel> PageQuery<TModel>(string selectColumn, string selectTable, string where, string order, int pageIndex, int pageSize, object cmdParms = null)
         {
-            SqlQuery query = new SqlQuery();
-            string sql = string.Empty;//select语句
-            if (pageIndex == 1)
-            {
-                sql = string.Format(@"SELECT TOP(@NUM) {0} FROM {1} {2} ORDER BY {3}", string.IsNullOrWhiteSpace(selectColumn) ? "*" : selectColumn, selectTable, string.IsNullOrWhiteSpace(where) ? string.Empty : string.Format(" WHERE {0} ", where), order);
-                query.AddParameter("@NUM", pageSize.ToString(), DbType.Int32, 4);
-            }
-            else
-            {
-                sql = string.Format(@"SELECT * FROM ( SELECT {0},row_number() over(ORDER BY {3}) as [num] FROM {1} {2} ) as [tab] WHERE NUM BETWEEN @NumStart and @NumEnd", string.IsNullOrWhiteSpace(selectColumn) ? "*" : selectColumn, selectTable, string.IsNullOrWhiteSpace(where) ? string.Empty : string.Format(" where {0} ", where), order);
-                query.AddParameter("@NumStart", ((pageIndex - 1) * pageSize + 1), DbType.Int32, 4);
-                query.AddParameter("@NumEnd", (pageIndex * pageSize).ToString(), DbType.Int32, 4);
-            }
-            if (cmdParms != null)
-            {
-                query.AddObjectParam(cmdParms);
-            }
-            query.CommandText = sql;
-            query.CommandType = CommandType.Text;
+            SqlQuery query = SqlQueryUtil.BuilderQueryPageSqlQuery(selectColumn, selectTable, where, order, pageIndex, pageSize, dbType: DataType, cmdParms: cmdParms);
             return GetDataAccess(isWrite: false).Query<TModel>(query);
         }
 

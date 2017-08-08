@@ -2,6 +2,7 @@
 using JQ.Utils;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 
@@ -187,6 +188,52 @@ namespace JQ.DataAccess.Utils
         }
 
         /// <summary>
+        /// 拼接分页的SQL语句
+        /// </summary>
+        /// <param name="selectColumn">需要查询的指定字段(多个之间用逗号隔开)</param>
+        /// <param name="selectTable">需要查询的表</param>
+        /// <param name="where">查询条件</param>
+        /// <param name="order">排序</param>
+        /// <param name="pageIndex">当前页</param>
+        /// <param name="pageSize">一页显示条目</param>
+        /// <param name="dbType">数据库类型，默认MSSQLServer</param>
+        /// <param name="cmdParms">条件值</param>
+        /// <returns>分页查询结果</returns>
+        public static SqlQuery BuilderQueryPageSqlQuery(string selectColumn, string selectTable, string where, string order, int pageIndex, int pageSize, DatabaseType dbType = DatabaseType.MSSQLServer, object cmdParms = null)
+        {
+            SqlQuery query = new SqlQuery();
+            string sql = string.Empty;//select语句
+            if (pageIndex == 1)
+            {
+                switch (dbType)
+                {
+                    default:
+                        sql = string.Format(@"SELECT TOP(@NUM) {0} FROM {1} {2} ORDER BY {3}", string.IsNullOrWhiteSpace(selectColumn) ? "*" : selectColumn, selectTable, string.IsNullOrWhiteSpace(where) ? string.Empty : string.Format(" WHERE {0} ", where), order);
+                        break;
+                }
+                query.AddParameter("@NUM", pageSize.ToString(), DbType.Int32, 4);
+            }
+            else
+            {
+                switch (dbType)
+                {
+                    default:
+                        sql = string.Format(@"SELECT * FROM ( SELECT {0},row_number() over(ORDER BY {3}) as [num] FROM {1} {2} ) as [tab] WHERE NUM BETWEEN @NumStart and @NumEnd", string.IsNullOrWhiteSpace(selectColumn) ? "*" : selectColumn, selectTable, string.IsNullOrWhiteSpace(where) ? string.Empty : string.Format(" WHERE {0} ", where), order);
+                        break;
+                }
+                query.AddParameter("@NumStart", ((pageIndex - 1) * pageSize + 1), DbType.Int32, 4);
+                query.AddParameter("@NumEnd", (pageIndex * pageSize).ToString(), DbType.Int32, 4);
+            }
+            if (cmdParms != null)
+            {
+                query.AddObjectParam(cmdParms);
+            }
+            query.CommandText = sql;
+            query.CommandType = CommandType.Text;
+            return query;
+        }
+
+        /// <summary>
         /// 获取参数符号
         /// </summary>
         /// <param name="dbType">数据库类型</param>
@@ -207,6 +254,25 @@ namespace JQ.DataAccess.Utils
                 default:
                     throw new NotSupportedException(dbType.ToString());
             }
+        }
+
+        /// <summary>
+        /// 获取自增的脚本语句
+        /// </summary>
+        /// <param name="keyName">主键名</param>
+        /// <param name="dbType">数据库类型</param>
+        /// <returns>获取自增的脚本语句</returns>
+        public static string GetIdentityKeyScript(string keyName, DatabaseType dbType)
+        {
+            string identityScript = string.Empty;
+            switch (dbType)
+            {
+                case DatabaseType.MySql:
+                case DatabaseType.MSSQLServer:
+                    identityScript = " SELECT scope_identity() ";
+                    break;
+            }
+            return identityScript;
         }
     }
 }

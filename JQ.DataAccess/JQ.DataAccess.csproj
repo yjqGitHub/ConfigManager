@@ -79,6 +79,7 @@
     <Compile Include="Uow\IBaseUnitOfWork.cs" />
     <Compile Include="Utils\SqlMonitorUtil.cs" />
     <Compile Include="Utils\SqlQueryUtil.cs" />
+    <Compile Include="Utils\SqlWhereBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JQ\JQ.csproj">

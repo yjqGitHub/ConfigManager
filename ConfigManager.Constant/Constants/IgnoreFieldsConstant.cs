@@ -13,5 +13,10 @@
         /// fid
         /// </summary>
         public static readonly string[] Ignore_FID = new string[1] { "FID" };
+
+        /// <summary>
+        /// FID和创建信息
+        /// </summary>
+        public static readonly string[] Ignore_KeyAndCreate = new string[] { "FID", "FCreateTime", "FCreateUserID" };
     }
 }

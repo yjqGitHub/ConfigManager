@@ -63,7 +63,8 @@ namespace ConfigManager.Domain
 
         public string GetDescription()
         {
-            return $"环境【名称：{FName},编号：{FCode}】";
+            string idText = FID > 0 ? "FID:" + FID.ToString() : string.Empty;
+            return $"环境【{idText}名称：{FName},编号：{FCode}】";
         }
 
     }

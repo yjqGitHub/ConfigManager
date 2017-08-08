@@ -16,9 +16,16 @@ namespace ConfigManager.Repository
     public interface IEnvironmentRepository : IBaseDataRepository<EnvironmentInfo>
     {
         /// <summary>
-        /// 获取环境列表
+        /// 异步获取环境列表
         /// </summary>
         /// <returns>环境列表</returns>
         Task<IEnumerable<EnvironmentDto>> LoadEnvironmentListAsync();
+
+        /// <summary>
+        /// 异步获取环境传输信息
+        /// </summary>
+        /// <param name="environmentID">环境ID</param>
+        /// <returns>环境传输信息</returns>
+        Task<EnvironmentDto> GetEnvironmentDtoAsync(int environmentID);
     }
 }

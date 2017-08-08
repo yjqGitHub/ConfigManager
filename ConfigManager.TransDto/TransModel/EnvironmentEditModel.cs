@@ -9,7 +9,7 @@ namespace ConfigManager.TransDto.TransModel
     /// 类功能描述：EnvironmentAddModel
     /// 创建标识：yjq 2017/8/6 15:27:06
     /// </summary>
-    public class EnvironmentAddModel
+    public class EnvironmentEditModel
     {
         /// <summary>
 		/// 环境ID(主键、自增)
@@ -20,12 +20,14 @@ namespace ConfigManager.TransDto.TransModel
         /// 环境名称
         /// </summary>
         [Required(ErrorMessage = "环境名称不能为空")]
+        [StringLength(50, ErrorMessage = "名称最长为50")]
         public string FName { get; set; }
 
         /// <summary>
         /// 编码(全局唯一)
         /// </summary>
         [Required(ErrorMessage = "编码不能为空")]
+        [StringLength(50, ErrorMessage = "编码最长为50")]
         public string FCode { get; set; }
 
         /// <summary>
