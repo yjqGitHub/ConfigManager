@@ -56,6 +56,7 @@
     <Compile Include="Result\AjaxState.cs" />
     <Compile Include="Result\JQJsonResult.cs" />
     <Compile Include="Result\ResultUtil.cs" />
+    <Compile Include="SelectItemTool.cs" />
     <Compile Include="WebTool.cs" />
   </ItemGroup>
   <ItemGroup>

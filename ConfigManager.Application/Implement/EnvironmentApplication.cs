@@ -128,7 +128,7 @@ namespace ConfigManager.Application.Implement
                     FLastModifyTime = DateTime.Now,
                     FLaseModifyUserID = operateUserID
                 }, new { FID = environmentID });
-                _adminOperateLogDomainService.AddOperateLog(BizType.Enviroment, $"删除环境【FID:{environmentID}】", operateUserID);
+                _adminOperateLogDomainService.AddOperateLog(BizType.Enviroment, $"删除环境【FID:{environmentID.ToString()}】", operateUserID);
             }, callMemberName: "EnvironmentApplication-DeleteEnvironmentAsync");
         }
     }

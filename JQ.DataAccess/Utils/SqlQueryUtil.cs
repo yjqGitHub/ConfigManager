@@ -1,4 +1,5 @@
 ﻿using JQ.DataAccess.DbClient;
+using JQ.Extensions;
 using JQ.Utils;
 using System;
 using System.Collections.Generic;
@@ -131,6 +132,19 @@ namespace JQ.DataAccess.Utils
         /// <returns>查询的SqlQuery</returns>
         public static SqlQuery BuilderQuerySqlQuery(object condition, string tableName, DatabaseType dbType = DatabaseType.MSSQLServer)
         {
+            return BuilderQuerySqlQuery(condition, tableName, string.Empty, dbType: dbType);
+        }
+
+        /// <summary>
+        /// 拼接查询的SqlQuery
+        /// </summary>
+        /// <param name="condition">查询条件</param>
+        /// <param name="tableName">表名</param>
+        /// <param name="order">排序字段</param>
+        /// <param name="dbType">数据库类型，默认MSSQLServer</param>
+        /// <returns>查询的SqlQuery</returns>
+        public static SqlQuery BuilderQuerySqlQuery(object condition, string tableName, string order, DatabaseType dbType = DatabaseType.MSSQLServer)
+        {
             SqlQuery sqlQuery = new SqlQuery();
             var whereFields = string.Empty;
             var whereProperties = PropertyUtil.GetPropertyInfos(condition);
@@ -139,7 +153,7 @@ namespace JQ.DataAccess.Utils
             {
                 whereFields = " WHERE " + string.Join(" AND ", whereFieldNames.Select(p => p + " = " + GetSign(dbType) + p));
             }
-            var sql = string.Format("SELECT * FROM {0}{1};", tableName, whereFields);
+            var sql = string.Format("SELECT * FROM {0}{1} {2};", tableName, whereFields, string.IsNullOrWhiteSpace(order) ? string.Empty : "ORDER BY " + order);
             return new SqlQuery(sql, condition);
         }
 
@@ -154,6 +168,21 @@ namespace JQ.DataAccess.Utils
         /// <returns>查询的SqlQuery</returns>
         public static SqlQuery BuilderQuerySqlQuery<TModel>(object condition, string tableName, string[] ignoreFields = null, DatabaseType dbType = DatabaseType.MSSQLServer)
         {
+            return BuilderQuerySqlQuery<TModel>(condition, tableName, string.Empty, ignoreFields: ignoreFields, dbType: dbType);
+        }
+
+        /// <summary>
+        /// 拼接查询的SqlQuery
+        /// </summary>
+        /// <typeparam name="TModel">查询字段的类型</typeparam>
+        /// <param name="condition">查询条件</param>
+        /// <param name="tableName">表名</param>
+        /// <param name="order">排序字段</param>
+        /// <param name="ignoreFields">需要忽略的字段</param>
+        /// <param name="dbType">数据库类型，默认MSSQLServer</param>
+        /// <returns>查询的SqlQuery</returns>
+        public static SqlQuery BuilderQuerySqlQuery<TModel>(object condition, string tableName, string order, string[] ignoreFields = null, DatabaseType dbType = DatabaseType.MSSQLServer)
+        {
             SqlQuery sqlQuery = new SqlQuery();
             var whereFields = string.Empty;
             var selectProperties = PropertyUtil.GetTypeProperties(typeof(TModel), ignoreFields);
@@ -163,7 +192,7 @@ namespace JQ.DataAccess.Utils
             {
                 whereFields = " WHERE " + string.Join(" AND ", whereFieldNames.Select(p => p + " = " + GetSign(dbType) + p));
             }
-            var sql = string.Format("SELECT {0} FROM {1}{2};", string.Join(",", selectProperties.Select(m => m.Name)), tableName, whereFields);
+            var sql = string.Format("SELECT {0} FROM {1}{2} {3};", string.Join(",", selectProperties.Select(m => m.Name)), tableName, whereFields, string.IsNullOrWhiteSpace(order) ? string.Empty : "ORDER BY " + order);
             return new SqlQuery(sql, condition);
         }
 
@@ -185,6 +214,42 @@ namespace JQ.DataAccess.Utils
             }
             var sql = string.Format("SELECT COUNT(0) FROM {0}{1};", tableName, whereFields);
             return new SqlQuery(sql, condition);
+        }
+
+        /// <summary>
+        /// 拼接查询的SqlQuery
+        /// </summary>
+        /// <param name="selectColumn">查询列</param>
+        /// <param name="selectTable">查询表</param>
+        /// <param name="where">查询条件</param>
+        /// <param name="cmdParms">参数</param>
+        /// <returns>查询的SqlQuery</returns>
+        public static SqlQuery BuilderQueryListSqlQuery(string selectColumn, string selectTable, string where, object cmdParms = null)
+        {
+            StringBuilder sqlBuilder = new StringBuilder();
+            sqlBuilder.AppendFormat("SELECT {0} FROM {1} ", selectColumn, selectTable)
+                      .AppendFormatIf(where.IsNotNullAndNotEmptyWhiteSpace(), " WHERE {0}", where)
+                      ;
+            return new SqlQuery(sqlBuilder.ToString(), cmdParms);
+        }
+
+        /// <summary>
+        /// 拼接查询的SqlQuery
+        /// </summary>
+        /// <param name="selectColumn">查询列</param>
+        /// <param name="selectTable">查询表</param>
+        /// <param name="where">查询条件</param>
+        /// <param name="order">排序信息</param>
+        /// <param name="cmdParms">参数</param>
+        /// <returns>查询的SqlQuery</returns>
+        public static SqlQuery BuilderQueryListSqlQuery(string selectColumn, string selectTable, string where, string order, object cmdParms = null)
+        {
+            StringBuilder sqlBuilder = new StringBuilder();
+            sqlBuilder.AppendFormat("SELECT {0} FROM {1} ", selectColumn, selectTable)
+                      .AppendFormatIf(where.IsNotNullAndNotEmptyWhiteSpace(), " WHERE {0}", where)
+                      .AppendFormatIf(order.IsNotNullAndNotEmptyWhiteSpace(), " ORDER BY {0}", order)
+                      ;
+            return new SqlQuery(sqlBuilder.ToString(), cmdParms);
         }
 
         /// <summary>

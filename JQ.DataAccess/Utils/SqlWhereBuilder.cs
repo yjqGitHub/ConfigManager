@@ -10,7 +10,7 @@ namespace JQ.DataAccess.Utils
     /// Copyright (C) 2015 备胎 版权所有。
     /// 类名：SqlWhereBuilder.cs
     /// 类属性：公共类（非静态）
-    /// 类功能描述：
+    /// 类功能描述：SQL条件拼接
     /// 创建标识：yjq 2017/8/8 15:54:36
     /// </summary>
     public class SqlWhereBuilder
@@ -38,9 +38,10 @@ namespace JQ.DataAccess.Utils
             Append(where);
         }
 
-        public void ChangeDbType(DatabaseType dbType)
+        public SqlWhereBuilder ChangeDbType(DatabaseType dbType)
         {
             _dbType = dbType;
+            return this;
         }
 
         /// <summary>

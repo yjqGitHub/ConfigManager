@@ -1,12 +1,10 @@
 ﻿@model IEnumerable<EnvironmentDto>
-@{
-    ViewBag.Title = "部署环境列表";
-}
+
 <div class="page-header">
     <nav>
         <span class="r" style="margin-right: 15px;">
-            <a href="/Environment/Add?w=700&h=400" title="添加环境" class="openDialog btn btn-primary radius">
-                <i class="Hui-iconfont">&#xe600;</i> 添加环境
+            <a href="/ConfigMap/AddConfig?belongType=@(ViewBag.BelongType.ToString())&belongID=@(ViewBag.BelongID.ToString())&w=800&h=600" t title="添加配置" class="openDialog btn btn-primary radius">
+                <i class="Hui-iconfont">&#xe600;</i> 添加配置
             </a>
         </span>
     </nav>

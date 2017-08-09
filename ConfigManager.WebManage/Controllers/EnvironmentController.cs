@@ -30,7 +30,7 @@ namespace ConfigManager.WebManage.Controllers
         [HttpGet]
         public ActionResult Add()
         {
-            return View();
+            return View(new EnvironmentEditModel());
         }
 
         /// <summary>

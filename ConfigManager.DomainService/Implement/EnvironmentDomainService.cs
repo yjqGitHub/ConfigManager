@@ -41,7 +41,8 @@ namespace ConfigManager.DomainService.Implement
                 FCreateUserID = currentUserID,
                 FIsDeleted = false,
                 FName = model.FName,
-                FSecret = model.FSecret
+                FSecret = model.FSecret,
+                FOrderIndex = model.FOrderIndex
             };
             if (model.FID > 0)
             {

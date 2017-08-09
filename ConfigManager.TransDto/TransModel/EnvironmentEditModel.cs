@@ -37,6 +37,11 @@ namespace ConfigManager.TransDto.TransModel
         public string FSecret { get; set; }
 
         /// <summary>
+        /// 排列顺序
+        /// </summary>
+        public int FOrderIndex { get; set; }
+
+        /// <summary>
         /// 备注
         /// </summary>
         public string FComment { get; set; }

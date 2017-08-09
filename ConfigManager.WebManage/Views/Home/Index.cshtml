@@ -66,10 +66,21 @@
                 <dl>
                     <dt><i class="Hui-iconfont">&#xe611;</i>配置组<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
                     <dd>
-                        @foreach (var item in environmentList)
+                        @foreach (var item in environmentList.OrderByDescending(m => m.FOrderIndex))
                         {
                             <ul>
-                                <li><a data-href="/PubConfigGroup/Index?EnvironmentID=@(item.FID)" data-title="@(item.FName+"配置组")" href="javascript:void(0)">@(item.FName+"配置组")</a></li>
+                                <li><a data-href="/PubConfigGroup/Index?EnvironmentID=@(item.FID)" data-title="@(item.FName+"配置组")" href="javascript:void(0)">@(item.FName + "配置组")</a></li>
+                            </ul>
+                        }
+                    </dd>
+                </dl>
+                <dl>
+                    <dt><i class="Hui-iconfont">&#xe639;</i>项目<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+                    <dd>
+                        @foreach (var item in environmentList.OrderByDescending(m => m.FOrderIndex))
+                        {
+                            <ul>
+                                <li><a data-href="/Application/Index?EnvironmentID=@(item.FID)" data-title="@(item.FName+"项目列表")" href="javascript:void(0)">@(item.FName + "项目列表")</a></li>
                             </ul>
                         }
                     </dd>

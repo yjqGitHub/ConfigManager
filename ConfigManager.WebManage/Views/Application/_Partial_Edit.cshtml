@@ -1,9 +1,16 @@
-﻿@model EnvironmentEditModel
+﻿@model ApplicationEditModel
 @Html.HiddenFor(m => m.FID)
 <div class="row cl">
-    <label class="form-label col-xs-4 col-sm-4"><span class="c-red">*</span>环境名称：</label>
+    <label class="form-label col-xs-4 col-sm-4"><span class="c-red">*</span>所属环境：</label>
     <div class="formControls col-xs-4 col-sm-6">
-        @Html.TextBoxFor(m => m.FName, new { @placeholder = "请输入环境名称", @class = "input-text" })
+        @(Model.FEnvironmentName + "【" + Model.FEnvironmentCode + "】")
+        @Html.HiddenFor(m => m.FEnvironmentID)
+    </div>
+</div>
+<div class="row cl">
+    <label class="form-label col-xs-4 col-sm-4"><span class="c-red">*</span>项目：</label>
+    <div class="formControls col-xs-4 col-sm-6">
+        @Html.TextBoxFor(m => m.FName, new { @placeholder = "项目名称", @class = "input-text" })
     </div>
 </div>
 <div class="row cl">
@@ -13,15 +20,16 @@
     </div>
 </div>
 <div class="row cl">
-    <label class="form-label col-xs-4 col-sm-4"><span class="c-red">*</span>排序：</label>
+    <label class="form-label col-xs-4 col-sm-4">版本号：</label>
     <div class="formControls col-xs-4 col-sm-6">
-        @Html.TextBoxFor(m => m.FOrderIndex, new { @placeholder = "请输入排序", @class = "input-text" })
+        @Html.TextBoxFor(m => m.FVersion, new { @placeholder = "请输入版本号", @class = "input-text" })
     </div>
 </div>
 <div class="row cl">
-    <label class="form-label col-xs-4 col-sm-4">密钥：</label>
+    <label class="form-label col-xs-4 col-sm-4">是否启用：</label>
     <div class="formControls col-xs-4 col-sm-6">
-        @Html.TextBoxFor(m => m.FSecret, new { @class = "input-text" })
+        @Html.RadioButtonFor(m => m.FIsEnabled, true) 启用
+        @Html.RadioButtonFor(m => m.FIsEnabled, false) 禁用
     </div>
 </div>
 <div class="row cl">

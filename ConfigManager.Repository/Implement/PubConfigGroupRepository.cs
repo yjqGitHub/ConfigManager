@@ -33,12 +33,13 @@ namespace ConfigManager.Repository.Implement
         /// <returns>分组列表</returns>
         public Task<IPageResult<PubConfigGroupDto>> LoadConfigGroupListAsync(ConfigGroupQueryWhereDto queryWhere)
         {
-            const string selectColumn = " A.FID,A.FCode,A.FName,A.FEnvironmentID,A.FIsEnabled,A.FComment,ISNULL(A.FLastModifyTime,A.FCreateTime) FLastModifyTime,B.FName FEnvironmentName,B.FCode FEnvironmentCode ";
-            const string selectTable = " " + RepositoryConstant.TABLE_NAME_PUBCONFIGGROUP + " A WITH(NOLOCK) LEFT JOIN " + RepositoryConstant.TABLE_NAME_ENVIRONMENT + " B WITH(NOLOCK) ON A.FEnvironmentID=B.FID AND B.FIsDeleted=0 ";
-            SqlWhereBuilder whereBuilder = new SqlWhereBuilder(dbType: DataType);
-            whereBuilder.AppendEqual("A.FEnvironmentID", queryWhere.EnvironmentID, paramKey: "EnvironmentID")
-                        .AppendLike("A.FName", queryWhere.Name, "Name")
-                        .AppendEqual("A.FCode", queryWhere.Code, "Code")
+            const string selectColumn = " A.FID,A.FCode,A.FName,A.FEnvironmentID,A.FIsEnabled,A.FComment,ISNULL(A.FLastModifyTime,A.FCreateTime) AS FLastModifyTime,B.FName AS FEnvironmentName,B.FCode AS FEnvironmentCode ";
+            const string selectTable = " " + RepositoryConstant.TABLE_NAME_PUBCONFIGGROUP + " AS A WITH(NOLOCK) LEFT JOIN " + RepositoryConstant.TABLE_NAME_ENVIRONMENT + " AS B WITH(NOLOCK) ON A.FEnvironmentID=B.FID AND B.FIsDeleted=0 ";
+            SqlWhereBuilder whereBuilder = new SqlWhereBuilder(" A.FIsDeleted=0 ", dbType: DataType);
+            whereBuilder.AppendEqual("A.FEnvironmentID", queryWhere.EnvironmentID, nameof(queryWhere.EnvironmentID))
+                        .AppendLike("A.FName", queryWhere.Name, nameof(queryWhere.Name))
+                        .AppendEqual("A.FCode", queryWhere.Code, nameof(queryWhere.Code))
+                        .AppendEqual("A.FIsEnabled", queryWhere.FIsEnabled, nameof(queryWhere.FIsEnabled))
                         ;
             string orderColumn = string.IsNullOrWhiteSpace(queryWhere.OrderColumn) ? "ISNULL(A.FLastModifyTime,A.FCreateTime)" : queryWhere.OrderColumn;
             return QueryPageListAsync<PubConfigGroupDto>(selectColumn, selectTable, whereBuilder.ToString(), orderColumn, queryWhere.PageIndex, queryWhere.PageSize, queryWhere);
@@ -51,7 +52,7 @@ namespace ConfigManager.Repository.Implement
         /// <returns>配置组编辑信息</returns>
         public Task<PubConfigGroupEditModel> GetEditModelAsync(int pubConfigGroupID)
         {
-            string sql = "SELECT A.FID,A.FName,A.FCode,A.FEnvironmentID,A.FComment,A.FIsEnabled,B.FName FEnvironmentName,B.FCode FEnvironmentCode FROM T_PubConfigGroup A WITH(NOLOCK) LEFT JOIN T_Environment B WITH(NOLOCK) ON A.FEnvironmentID=B.FID AND B.FIsDeleted=0 WHERE A.FID=@FID AND A.FIsDeleted=0;";
+            string sql = "SELECT A.FID,A.FName,A.FCode,A.FEnvironmentID,A.FComment,A.FIsEnabled,B.FName AS FEnvironmentName,B.FCode AS FEnvironmentCode FROM  " + RepositoryConstant.TABLE_NAME_PUBCONFIGGROUP + " AS A WITH(NOLOCK) LEFT JOIN " + RepositoryConstant.TABLE_NAME_ENVIRONMENT + " AS B WITH(NOLOCK) ON A.FEnvironmentID=B.FID AND B.FIsDeleted=0 WHERE A.FID=@FID AND A.FIsDeleted=0;";
             SqlQuery sqlQuery = new SqlQuery(sql, new { FID = pubConfigGroupID });
             return SingleOrDefaultAsync<PubConfigGroupEditModel>(sqlQuery);
         }

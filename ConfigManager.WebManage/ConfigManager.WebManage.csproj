@@ -130,6 +130,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ApplicationController.cs" />
+    <Compile Include="Controllers\ConfigMapController.cs" />
     <Compile Include="Controllers\EnvironmentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PubConfigGroupController.cs" />
@@ -542,13 +544,34 @@
     <Content Include="Views\PubConfigGroup\Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\PubConfigGroup\_PubConfigGroup_Edit.cshtml" />
+    <Content Include="Views\PubConfigGroup\_Partial_Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\PubConfigGroup\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\PubConfigGroup\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Application\_Partial_Search.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Application\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Application\Add.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Application\_Partial_Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Application\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ConfigMap\AddConfig.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ConfigMap\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

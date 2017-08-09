@@ -1,9 +1,9 @@
-﻿@model PubConfigGroupEditModel
+﻿@model ApplicationEditModel
 @{
     Layout = "~/Views/Shared/_Layout_Edit.cshtml";
 }
 <div class="page-container">
-    @using (Html.BeginForm("Edit", "PubConfigGroup", FormMethod.Post, new { @class = "form form-horizontal", @id = "form-edit" }))
+    @using (Html.BeginForm("Edit", "Application", FormMethod.Post, new { @class = "form form-horizontal", @id = "form-edit" }))
     {
         @Html.Partial("_Partial_Edit")
     }

@@ -44,6 +44,9 @@
     <Compile Include="Constants\IgnoreFieldsConstant.cs" />
     <Compile Include="EnumCollection\AdminState.cs" />
     <Compile Include="EnumCollection\BizType.cs" />
+    <Compile Include="EnumCollection\ConfigBelongType.cs" />
+    <Compile Include="EnumCollection\ConfigType.cs" />
+    <Compile Include="EnumCollection\LoadBalanceAlgorithmType.cs" />
     <Compile Include="EnumCollection\WebSitePort.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="T4Template\frame1.cs">

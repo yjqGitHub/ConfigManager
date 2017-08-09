@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2008                    */
-/* Created on:     2017/8/2 22:19:15                            */
+/* Created on:     2017/8/9 21:05:44                            */
 /*==============================================================*/
 
 
@@ -1057,6 +1057,7 @@ create table T_Application (
    FEnvironmentID       int                  not null,
    FName                varchar(100)         null,
    FCode                varchar(50)          null,
+   FIsEnabled           bit                  not null,
    FVersion             varchar(15)          null,
    FComment             varchar(100)         null,
    FCreateTime          datetime             not null,
@@ -1159,6 +1160,25 @@ select @CurrentUser = user_name()
 execute sp_addextendedproperty 'MS_Description', 
    '编码(环境中唯一)',
    'user', @CurrentUser, 'table', 'T_Application', 'column', 'FCode'
+go
+
+if exists(select 1 from sys.extended_properties p where
+      p.major_id = object_id('T_Application')
+  and p.minor_id = (select c.column_id from sys.columns c where c.object_id = p.major_id and c.name = 'FIsEnabled')
+)
+begin
+   declare @CurrentUser sysname
+select @CurrentUser = user_name()
+execute sp_dropextendedproperty 'MS_Description', 
+   'user', @CurrentUser, 'table', 'T_Application', 'column', 'FIsEnabled'
+
+end
+
+
+select @CurrentUser = user_name()
+execute sp_addextendedproperty 'MS_Description', 
+   '是否启用(1表示启用)',
+   'user', @CurrentUser, 'table', 'T_Application', 'column', 'FIsEnabled'
 go
 
 if exists(select 1 from sys.extended_properties p where
@@ -1895,8 +1915,9 @@ go
 create table T_Config (
    FID                  int                  identity(1,1),
    FConfigMapID         int                  not null,
+   FType                int                  not null,
    FVersion             varchar(15)          not null,
-   FValue               varchar(100)         null,
+   FValue               varchar(1000)        null,
    FFailOverID          int                  not null,
    FLoadBalanceAlgorithmType int                  not null,
    FComment             varchar(100)         null,
@@ -1962,6 +1983,25 @@ select @CurrentUser = user_name()
 execute sp_addextendedproperty 'MS_Description', 
    '配置关系记录ID(T_Config_Map主键,同一个版本号只能有一条)',
    'user', @CurrentUser, 'table', 'T_Config', 'column', 'FConfigMapID'
+go
+
+if exists(select 1 from sys.extended_properties p where
+      p.major_id = object_id('T_Config')
+  and p.minor_id = (select c.column_id from sys.columns c where c.object_id = p.major_id and c.name = 'FType')
+)
+begin
+   declare @CurrentUser sysname
+select @CurrentUser = user_name()
+execute sp_dropextendedproperty 'MS_Description', 
+   'user', @CurrentUser, 'table', 'T_Config', 'column', 'FType'
+
+end
+
+
+select @CurrentUser = user_name()
+execute sp_addextendedproperty 'MS_Description', 
+   '配置类型(1:默认配置,2:负载均衡配置,3:故障转移)',
+   'user', @CurrentUser, 'table', 'T_Config', 'column', 'FType'
 go
 
 if exists(select 1 from sys.extended_properties p where
@@ -2036,7 +2076,7 @@ end
 
 select @CurrentUser = user_name()
 execute sp_addextendedproperty 'MS_Description', 
-   '负载均衡算法类型(1:轮询法,2:随机法,3:原地址哈希法,4:加权轮循法,5:加权随机发,6:最小连接数法)',
+   '负载均衡算法类型(1:轮询法,2:随机法,3:源地址哈希法,4:加权轮循法,5:加权随机法,6:最小连接数法)',
    'user', @CurrentUser, 'table', 'T_Config', 'column', 'FLoadBalanceAlgorithmType'
 go
 
@@ -2369,7 +2409,7 @@ create table T_Config_HistoryRecord (
    FVersion             varchar(15)          not null,
    FType                int                  not null,
    FKey                 varchar(50)          null,
-   FValue               varchar(100)         null,
+   FValue               varchar(1000)        null,
    FFailOverID          int                  not null,
    FLoadBalanceAlgorithmType int                  not null,
    FCreateTime          datetime             not null,
@@ -2895,10 +2935,9 @@ go
 create table T_Config_Map (
    FID                  int                  identity(1,1),
    FEnvironmentID       int                  not null,
-   FApplicationID       INT                  not null,
-   FPubConfigGroupID    int                  not null,
+   FBelongType          int                  not null,
+   FBelongID            INT                  not null,
    FKey                 varchar(50)          null,
-   FType                int                  not null,
    FComment             varchar(100)         null,
    FCreateUserID        int                  not null,
    FCreateTime          datetime             not null,
@@ -2966,40 +3005,40 @@ go
 
 if exists(select 1 from sys.extended_properties p where
       p.major_id = object_id('T_Config_Map')
-  and p.minor_id = (select c.column_id from sys.columns c where c.object_id = p.major_id and c.name = 'FApplicationID')
+  and p.minor_id = (select c.column_id from sys.columns c where c.object_id = p.major_id and c.name = 'FBelongType')
 )
 begin
    declare @CurrentUser sysname
 select @CurrentUser = user_name()
 execute sp_dropextendedproperty 'MS_Description', 
-   'user', @CurrentUser, 'table', 'T_Config_Map', 'column', 'FApplicationID'
+   'user', @CurrentUser, 'table', 'T_Config_Map', 'column', 'FBelongType'
 
 end
 
 
 select @CurrentUser = user_name()
 execute sp_addextendedproperty 'MS_Description', 
-   '应用ID',
-   'user', @CurrentUser, 'table', 'T_Config_Map', 'column', 'FApplicationID'
+   '配置所属类型(1:应用,2:公告组)',
+   'user', @CurrentUser, 'table', 'T_Config_Map', 'column', 'FBelongType'
 go
 
 if exists(select 1 from sys.extended_properties p where
       p.major_id = object_id('T_Config_Map')
-  and p.minor_id = (select c.column_id from sys.columns c where c.object_id = p.major_id and c.name = 'FPubConfigGroupID')
+  and p.minor_id = (select c.column_id from sys.columns c where c.object_id = p.major_id and c.name = 'FBelongID')
 )
 begin
    declare @CurrentUser sysname
 select @CurrentUser = user_name()
 execute sp_dropextendedproperty 'MS_Description', 
-   'user', @CurrentUser, 'table', 'T_Config_Map', 'column', 'FPubConfigGroupID'
+   'user', @CurrentUser, 'table', 'T_Config_Map', 'column', 'FBelongID'
 
 end
 
 
 select @CurrentUser = user_name()
 execute sp_addextendedproperty 'MS_Description', 
-   '公共配置组ID',
-   'user', @CurrentUser, 'table', 'T_Config_Map', 'column', 'FPubConfigGroupID'
+   '所属类型ID',
+   'user', @CurrentUser, 'table', 'T_Config_Map', 'column', 'FBelongID'
 go
 
 if exists(select 1 from sys.extended_properties p where
@@ -3019,25 +3058,6 @@ select @CurrentUser = user_name()
 execute sp_addextendedproperty 'MS_Description', 
    '配置Key(同一环境下，相同的应用或配置组不能重复)',
    'user', @CurrentUser, 'table', 'T_Config_Map', 'column', 'FKey'
-go
-
-if exists(select 1 from sys.extended_properties p where
-      p.major_id = object_id('T_Config_Map')
-  and p.minor_id = (select c.column_id from sys.columns c where c.object_id = p.major_id and c.name = 'FType')
-)
-begin
-   declare @CurrentUser sysname
-select @CurrentUser = user_name()
-execute sp_dropextendedproperty 'MS_Description', 
-   'user', @CurrentUser, 'table', 'T_Config_Map', 'column', 'FType'
-
-end
-
-
-select @CurrentUser = user_name()
-execute sp_addextendedproperty 'MS_Description', 
-   '配置类型(1:默认配置,2:负载均衡配置,3:故障转移)',
-   'user', @CurrentUser, 'table', 'T_Config_Map', 'column', 'FType'
 go
 
 if exists(select 1 from sys.extended_properties p where
@@ -3367,6 +3387,7 @@ create table T_Environment (
    FName                varchar(50)          null,
    FCode                varchar(50)          null,
    FSecret              varchar(50)          null,
+   FOrderIndex          int                  not null,
    FComment             varchar(100)         null,
    FCreateTime          datetime             not null,
    FCreateUserID        int                  not null,
@@ -3468,6 +3489,25 @@ select @CurrentUser = user_name()
 execute sp_addextendedproperty 'MS_Description', 
    '配置访问密钥',
    'user', @CurrentUser, 'table', 'T_Environment', 'column', 'FSecret'
+go
+
+if exists(select 1 from sys.extended_properties p where
+      p.major_id = object_id('T_Environment')
+  and p.minor_id = (select c.column_id from sys.columns c where c.object_id = p.major_id and c.name = 'FOrderIndex')
+)
+begin
+   declare @CurrentUser sysname
+select @CurrentUser = user_name()
+execute sp_dropextendedproperty 'MS_Description', 
+   'user', @CurrentUser, 'table', 'T_Environment', 'column', 'FOrderIndex'
+
+end
+
+
+select @CurrentUser = user_name()
+execute sp_addextendedproperty 'MS_Description', 
+   '排列顺序(越小越靠前)',
+   'user', @CurrentUser, 'table', 'T_Environment', 'column', 'FOrderIndex'
 go
 
 if exists(select 1 from sys.extended_properties p where

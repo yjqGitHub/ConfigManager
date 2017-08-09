@@ -7,6 +7,7 @@ using JQ.DataAccess.DbClient;
 using JQ.DataAccess.Repositories;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using JQ.DataAccess.Utils;
 
 namespace ConfigManager.Repository.Implement
 {
@@ -29,7 +30,7 @@ namespace ConfigManager.Repository.Implement
         /// <returns>环境列表</returns>
         public Task<IEnumerable<EnvironmentDto>> LoadEnvironmentListAsync()
         {
-            string sql = "SELECT FID,FName,FCode,FSecret,FComment,ISNULL(FLastModifyTime,FCreateTime) FLastModifyTime FROM " + TableName + " WITH(NOLOCK) WHERE FIsDeleted=0 ORDER BY ISNULL(FLastModifyTime,FCreateTime) DESC";
+            string sql = "SELECT FID,FName,FCode,FSecret,FOrderIndex,FComment," + "FLastModifyTime".IsNull("FCreateTime", dbType: DataType) + " AS FLastModifyTime FROM " + TableName.WithNolock(dbType: DataType) + " WHERE FIsDeleted=0 ORDER BY ISNULL(FLastModifyTime,FCreateTime) DESC";
             SqlQuery sqlQuery = new SqlQuery(sql);
             return QueryListAsync<EnvironmentDto>(sqlQuery);
         }
@@ -41,7 +42,7 @@ namespace ConfigManager.Repository.Implement
         /// <returns>环境传输信息</returns>
         public Task<EnvironmentDto> GetEnvironmentDtoAsync(int environmentID)
         {
-            string sql = "SELECT FID,FName,FCode,FSecret,FComment,ISNULL(FLastModifyTime,FCreateTime) FLastModifyTime FROM " + TableName + " WITH(NOLOCK) WHERE FID=@FID AND FIsDeleted=0;";
+            string sql = "SELECT FID,FName,FCode,FSecret,FOrderIndex,FComment," + "FLastModifyTime".IsNull("FCreateTime", dbType: DataType) + " AS FLastModifyTime FROM " + TableName.WithNolock(dbType: DataType) + " WHERE FID=@FID AND FIsDeleted=0;";
             SqlQuery sqlQuery = new SqlQuery(sql, new { FID = environmentID });
             return SingleOrDefaultAsync<EnvironmentDto>(sqlQuery);
         }

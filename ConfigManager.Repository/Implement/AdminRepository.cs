@@ -6,6 +6,7 @@ using ConfigManager.Repository.Constants;
 using ConfigManager.TransDto.TransDto;
 using System.Threading.Tasks;
 using JQ.DataAccess.DbClient;
+using JQ.DataAccess.Utils;
 
 namespace ConfigManager.Repository.Implement
 {
@@ -29,7 +30,7 @@ namespace ConfigManager.Repository.Implement
         /// <returns>管理员信息（传输对象）</returns>
         public Task<AdminDto> GetAdminTransInfo(int adminId)
         {
-            string sql = "SELECT A.FID,A.FMobile,A.FName,A.FUserName,A.FState,A.FIsSuperAdmin,B.FLastLoginAddress,B.FLastLoginIP,B.FLastLoginPort,B.FLastLoginTime,B.FLastLoginUserAgent FROM " + RepositoryConstant.TABLE_NAME_ADMIN + " A WITH(NOLOCK) LEFT JOIN " + RepositoryConstant.TABLE_NAME_ADMINDETAIL + " B WITH(NOLOCK) ON A.FID=B.FUserID AND B.FIsDeleted=0 WHERE A.FID=@FID AND A.FIsDeleted=0";
+            string sql = "SELECT A.FID,A.FMobile,A.FName,A.FUserName,A.FState,A.FIsSuperAdmin,B.FLastLoginAddress,B.FLastLoginIP,B.FLastLoginPort,B.FLastLoginTime,B.FLastLoginUserAgent FROM " + RepositoryConstant.TABLE_NAME_ADMIN.WithNolock("A", dbType: DataType).LeftJoin(RepositoryConstant.TABLE_NAME_ADMINDETAIL.WithNolock("B", dbType: DataType)) + " ON A.FID=B.FUserID AND B.FIsDeleted=0 WHERE A.FID=@FID AND A.FIsDeleted=0";
             SqlQuery sqlQuery = new SqlQuery();
             sqlQuery.AddParameter("FID", adminId.ToString()).ChangeCommandText(sql);
             return GetDtoAsync<AdminDto>(sqlQuery);

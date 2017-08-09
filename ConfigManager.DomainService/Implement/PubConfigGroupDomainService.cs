@@ -73,7 +73,7 @@ namespace ConfigManager.DomainService.Implement
                 oldInfo.NotNull("配置组信息不存在");
                 if (oldInfo.FEnvironmentID != info.FEnvironmentID)
                 {
-                    throw new BizException("所属环境不能更换吗");
+                    throw new BizException("所属环境不能更换");
                 }
             }
 
@@ -81,7 +81,7 @@ namespace ConfigManager.DomainService.Implement
             var environmentInfo = await _environmentRepository.GetInfoAsync(new { FID = info.FEnvironmentID, FIsDeleted = 0 }, isWrite: true);
             environmentInfo.NotNull("所属环境信息错误");
             //判断当前环境内有无重复的名字与编号
-            var existNameGroup = await _pubConfigGroupRepository.GetInfoAsync(new { FName = info.FName, FIsDeleted = 0 }, isWrite: true);
+            var existNameGroup = await _pubConfigGroupRepository.GetInfoAsync(new { FEnvironmentID = info.FEnvironmentID, FName = info.FName, FIsDeleted = 0 }, isWrite: true);
             if (existNameGroup != null)
             {
                 if (info.FID <= 0 || (info.FID > 0 && existNameGroup.FID != info.FID))
@@ -89,7 +89,7 @@ namespace ConfigManager.DomainService.Implement
                     throw new BizException($"名字【{info.FCode}】已存在");
                 }
             }
-            var existCodeGroup = await _pubConfigGroupRepository.GetInfoAsync(new { FCode = info.FCode, FIsDeleted = 0 }, isWrite: true);
+            var existCodeGroup = await _pubConfigGroupRepository.GetInfoAsync(new { FEnvironmentID = info.FEnvironmentID, FCode = info.FCode, FIsDeleted = 0 }, isWrite: true);
             if (existCodeGroup != null)
             {
                 if (info.FID <= 0 || (info.FID > 0 && existCodeGroup.FID != info.FID))

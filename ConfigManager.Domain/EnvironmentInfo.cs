@@ -37,6 +37,11 @@ namespace ConfigManager.Domain
         public string FComment { get; set; }
 
         /// <summary>
+        /// 排列顺序
+        /// </summary>
+        public int FOrderIndex { get; set; }
+
+        /// <summary>
         /// 创建时间
         /// </summary>
         public DateTime FCreateTime { get; set; }
@@ -66,6 +71,5 @@ namespace ConfigManager.Domain
             string idText = FID > 0 ? "FID:" + FID.ToString() : string.Empty;
             return $"环境【{idText}名称：{FName},编号：{FCode}】";
         }
-
     }
 }

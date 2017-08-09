@@ -19,7 +19,7 @@ namespace JQ.DataAccess.Uow
         /// <summary>
         /// 提交
         /// </summary>
-        void Commit(bool isAutoRollback = false);
+        void Commit(bool isAutoRollback = true);
 
         /// <summary>
         /// 回滚

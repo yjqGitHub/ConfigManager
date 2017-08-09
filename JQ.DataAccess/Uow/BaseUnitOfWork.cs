@@ -46,7 +46,7 @@ namespace JQ.DataAccess.Uow
         /// <summary>
         /// 提交
         /// </summary>
-        public virtual void Commit(bool isAutoRollback = false)
+        public virtual void Commit(bool isAutoRollback = true)
         {
             try
             {
@@ -59,10 +59,7 @@ namespace JQ.DataAccess.Uow
                     Rollback();
                     LogUtil.Error(ex, memberName: "BaseUnitOfWork-Commit");
                 }
-                else
-                {
-                    throw;
-                }
+                throw;
             }
         }
 

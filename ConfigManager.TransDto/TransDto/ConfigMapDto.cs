@@ -1,16 +1,17 @@
 ﻿using ConfigManager.Constant.EnumCollection;
 using System;
+using System.Collections.Generic;
 
-namespace ConfigManager.Domain
+namespace ConfigManager.TransDto.TransDto
 {
     /// <summary>
     /// Copyright (C) 2015 备胎 版权所有。
-    /// 类名：ConfigMapInfo.cs
+    /// 类名：ConfigMapDto.cs
     /// 类属性：公共类（非静态）
-    /// 类功能描述：环境、项目公共配置组与配置关系
-    /// 创建标识：template 2017-07-30 22:11:55
+    /// 类功能描述：配置Key信息传输对象
+    /// 创建标识：yjq 2017/8/9 18:55:43
     /// </summary>
-    public sealed class ConfigMapInfo
+    public class ConfigMapDto
     {
         /// <summary>
         /// 记录ID(主键、自增)
@@ -43,28 +44,26 @@ namespace ConfigManager.Domain
         public string FComment { get; set; }
 
         /// <summary>
-        /// 创建人
-        /// </summary>
-        public int FCreateUserID { get; set; }
-
-        /// <summary>
-        /// 创建时间
-        /// </summary>
-        public DateTime FCreateTime { get; set; }
-
-        /// <summary>
         /// 最后修改时间
         /// </summary>
-        public DateTime? FLastModifyTime { get; set; }
+        public DateTime FLastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改人`
+        /// 配置列表
         /// </summary>
-        public int? FLaseModifyUserID { get; set; }
+        public List<ConfigDto> ConfigList { get; set; }
 
-        /// <summary>
-        /// 是否已删除
-        /// </summary>
-        public bool FIsDeleted { get; set; }
+        public void AddConfig(ConfigDto configDto)
+        {
+            if (configDto == null)
+            {
+                return;
+            }
+            if (ConfigList == null)
+            {
+                ConfigList = new List<TransDto.ConfigDto>();
+            }
+            ConfigList.Add(configDto);
+        }
     }
 }
