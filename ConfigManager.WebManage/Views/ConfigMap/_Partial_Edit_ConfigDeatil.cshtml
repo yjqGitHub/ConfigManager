@@ -1,0 +1,37 @@
+﻿@model List<ConfigDeatilModel>
+<table class="table table-border table-bordered table-bg table-hover radius">
+    <thead>
+        <tr class="text-c">
+            <th>版本号</th>
+            <th>配置类型</th>
+            <th>配置值</th>
+            <th>备注</th>
+            <th>最后修改时间</th>
+            <th><a href="javascription:void(0);" title="新增配置值" class="btn btn-primary size-S radius">新增</a></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Count > 0)
+        {
+            foreach (var item in Model)
+            {
+                <tr class="text-c">
+                    <td>@Html.TextBoxFor(m => item.FVersion)</td>
+                    <td>
+                        @Html.EnumRadioButtionFor(m => item.FType)
+                    </td>
+                    <td>@Html.TextBoxFor(m => item.FValue)<</td>
+                    <td>@Html.TextBoxFor(m => item.FComment)<</td>
+                    <td>@item.FLastModifyTime.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                    <td></td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr class="empty text-c">
+                <td colspan="6">暂无配置值</td>
+            </tr>
+        }
+    </tbody>
+</table>

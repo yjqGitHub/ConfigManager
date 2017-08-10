@@ -1844,7 +1844,7 @@ label,.placeholder{font-size:14px}
 	.formControls{position:relative}/*表单控制区*/
 	.formControls > *{vertical-align:middle}
 	.placeholder{position:absolute; left:4px; top:4px;color:#c6c6c6; cursor:text}/*表单默认值*/
-.form-horizontal .form-label{margin-top:3px;cursor:text;text-align:right}
+.form-horizontal .form-label{/*margin-top:3px;*/cursor:text;text-align:right}
 .form-horizontal .Validform_checktip{ margin-top:5px}
 /*设置placeholder颜色*/
 ::-webkit-input-placeholder {color:#b3b3b3}/* WebKit browsers */
@@ -1853,7 +1853,7 @@ label,.placeholder{font-size:14px}
 :-ms-input-placeholder {color:#b3b3b3}/* Internet Explorer 10+ */
 .placeholder{color:#adb0be; position:absolute; z-index:9}/*不兼容placeholder属性的浏览器，可使用<span class="placeholder">表单默认值</span>*/
 @media (max-width: 767px) {
-	.form-horizontal .form-label{ text-align:left}
+	.form-horizontal .form-label{ /*text-align:left*/}
 }
 /*3.4.8 表单验证*/
 /*文本框的错误状态*/

@@ -1,0 +1,34 @@
+﻿@using JQ.Extensions;
+@model ConfigEditModel
+@Html.HiddenFor(m => m.FID)
+<div class="row cl">
+    <label class="form-label col-xs-4 col-sm-2">所属信息：</label>
+    <div class="formControls col-xs-8 col-sm-10">
+        @(string.Concat(Model.FEnvironmentName ?? string.Empty, "【", Model.FEnvironmentCode ?? string.Empty + "】")) @(Model.FBelongType.Desc() + ":" + Model.FBelongName ?? string.Empty)
+        @Html.HiddenFor(m => m.FEnvironmentID)
+    </div>
+</div>
+<div class="row cl">
+    <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>Key：</label>
+    <div class="formControls col-xs-8 col-sm-10">
+        @Html.TextBoxFor(m => m.FKey, new { @placeholder = "请输入Key", @class = "input-text" })
+    </div>
+</div>
+<div class="row cl">
+    <label class="form-label col-xs-4 col-sm-2">备注：</label>
+    <div class="formControls col-xs-8 col-sm-10">
+        @Html.TextAreaFor(m => m.FComment, new { @class = "input-text", @rows = "3", @style = "height:80px;" })
+    </div>
+</div>
+<div class="row cl">
+    <label class="form-label col-xs-4 col-sm-2">配置值：</label>
+    <div class="formControls col-xs-8 col-sm-10">
+        @Html.Partial("_Partial_Edit_ConfigDeatil", @Model.ConfigList)
+    </div>
+</div>
+<div class="row cl" style="text-align:center;">
+    <div>
+        <button class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
+        <button onClick="CloseCurrent();" class="btn btn-danger radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+    </div>
+</div>

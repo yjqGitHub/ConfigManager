@@ -165,5 +165,27 @@ namespace JQ.Utils
             if (type == null) return false;
             return type.IsArray || type.IsGenericType;
         }
+
+        /// <summary>
+        /// 获取真实的类型
+        /// </summary>
+        /// <param name="type">要获取的类型</param>
+        /// <returns>真实的类型</returns>
+        public static Type GetTrueType(this Type type)
+        {
+            Type trueType = null;
+            if (type != null)
+            {
+                if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>))
+                {
+                    trueType = type.GetGenericArguments()[0];
+                }
+                else
+                {
+                    trueType = type;
+                }
+            }
+            return trueType;
+        }
     }
 }

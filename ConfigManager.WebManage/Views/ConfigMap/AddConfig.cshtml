@@ -1,7 +1,14 @@
-﻿
+﻿@model ConfigEditModel
 @{
     Layout = "~/Views/Shared/_Layout_Edit.cshtml";
 }
-
-<h2>AddConfig</h2>
+<div class="page-container">
+    @using (Html.BeginForm("AddConfig", "ConfigMap", FormMethod.Post, new { @class = "form form-horizontal", @id = "form-edit" }))
+    {
+        @Html.Partial("_Partial_Edit")
+    }
+</div>
+@section Script{
+    <script src="~/Content/JS/CommonJs/CommonEdit.js"></script>
+}
 

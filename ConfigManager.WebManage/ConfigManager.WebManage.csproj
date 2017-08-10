@@ -140,6 +140,7 @@
     </Compile>
     <Compile Include="Infrastructure\BaseController.cs" />
     <Compile Include="Infrastructure\Extensions\PageHelper.cs" />
+    <Compile Include="Infrastructure\Extensions\RadioButtonExtension.cs" />
     <Compile Include="Infrastructure\Filters\LoginAttribute.cs" />
     <Compile Include="Infrastructure\PublicUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -532,7 +533,7 @@
     <Content Include="NLog.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Environment\_Environment_Edit.cshtml" />
+    <Content Include="Views\Environment\_Partial_Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\NotFind.cshtml" />
@@ -572,6 +573,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\ConfigMap\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ConfigMap\_Partial_Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ConfigMap\_Partial_Edit_ConfigDeatil.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

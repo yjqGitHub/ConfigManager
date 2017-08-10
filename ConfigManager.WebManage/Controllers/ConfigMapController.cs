@@ -1,5 +1,6 @@
 ﻿using ConfigManager.Constant.EnumCollection;
 using ConfigManager.TransDto.QueryWhereDto;
+using ConfigManager.TransDto.TransModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +32,18 @@ namespace ConfigManager.WebManage.Controllers
         [HttpGet]
         public ActionResult AddConfig(ConfigBelongType belongType, int belongID)
         {
+            var model = new ConfigEditModel()
+            {
+                FBelongType = belongType,
+                FBelongID = belongID
+            };
+            return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult AddConfigDetail()
+        {
+
             return View();
         }
     }

@@ -53,6 +53,8 @@
     <Compile Include="TransDto\EnvironmentDto.cs" />
     <Compile Include="TransDto\PubConfigGroupDto.cs" />
     <Compile Include="TransModel\ApplicationEditModel.cs" />
+    <Compile Include="TransModel\ConfigDeatilModel.cs" />
+    <Compile Include="TransModel\ConfigEditModel.cs" />
     <Compile Include="TransModel\EnvironmentEditModel.cs" />
     <Compile Include="TransModel\LoginModel.cs" />
     <Compile Include="TransModel\PubConfigGroupEditModel.cs" />
