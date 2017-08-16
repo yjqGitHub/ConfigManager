@@ -72,10 +72,37 @@ namespace JQ.DataAccess.DbClient
             if (param != null)
             {
                 var objType = param.GetType();
-                if (!objType.IsArray)
+                if (!objType.IsArrayOrCollection())
                 {
-                    var parameterInfoList = param.ToDbParam<ParameterInfo>(string.Empty, prefix ?? string.Empty);
-                    AddParameter(parameterInfoList);
+                    var currentParam = param as ParameterInfo;
+                    if (currentParam != null)
+                    {
+                        AddParameter(currentParam);
+                    }
+                    else
+                    {
+                        var dbParam = param as IDbDataParameter;
+                        if (dbParam != null)
+                        {
+                            AddParameter(dbParam.ParameterName, dbParam.Value, dbType: dbParam.DbType, size: dbParam.Size);
+                        }
+                        else
+                        {
+                            var parameterInfoList = param.ToDbParam<ParameterInfo>(string.Empty, prefix ?? string.Empty);
+                            AddParameter(parameterInfoList);
+                        }
+                    }
+                }
+                else
+                {
+                    var paramList = param as IEnumerable<object>;
+                    if (paramList != null)
+                    {
+                        foreach (var item in paramList)
+                        {
+                            AddObjectParam(item, prefix: prefix);
+                        }
+                    }
                 }
             }
         }

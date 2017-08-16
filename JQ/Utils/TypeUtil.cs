@@ -163,7 +163,19 @@ namespace JQ.Utils
         public static bool IsArrayOrCollection(this Type type)
         {
             if (type == null) return false;
-            return type.IsArray || type.IsGenericType;
+            if (type.IsArray)
+            {
+                return true;
+            }
+            if (type.IsGenericType)
+            {
+                var genericTypeDefinition = type.GetGenericTypeDefinition();
+                if (genericTypeDefinition == typeof(IEnumerable<>) || genericTypeDefinition == typeof(IList<>) || genericTypeDefinition == typeof(List<>) || genericTypeDefinition == typeof(IEnumerator<>))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         /// <summary>
